@@ -585,12 +585,103 @@ input:focus, select:focus, textarea:focus {
   font-weight: 600;
 }
 
-/* Services Grid: Clean 3-column cards with breathing room */
+/* Services Section: Reference Visual Design matching #F4EDE0 backdrop */
+.services-reference-section {
+  background: #F4EDE0;
+  border-radius: 16px;
+  padding: 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(20, 33, 61, 0.04);
+  border: 1px solid rgba(20, 33, 61, 0.08);
+}
+@media (max-width: 768px) {
+  .services-reference-section {
+    padding: 2.5rem 1.5rem;
+    border-radius: 12px;
+  }
+}
+
+/* Subtle oversized eye/iris vector in upper-right */
+.services-bg-eye {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 440px;
+  height: 440px;
+  pointer-events: none;
+  opacity: 0.045;
+  color: var(--navy);
+  z-index: 0;
+}
+
+/* Subtle curved decorative line in lower-left */
+.services-bg-curve {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  height: 220px;
+  pointer-events: none;
+  opacity: 0.06;
+  color: var(--navy);
+  z-index: 0;
+}
+
+/* Heading with decorative lines */
+.services-eyebrow-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.services-eyebrow-line {
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background: rgba(20, 33, 61, 0.25);
+}
+
+.services-eyebrow-text {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.services-serif-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.85rem 0;
+  text-align: center;
+}
+
+.services-desc-text {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: #4B5563;
+  line-height: 1.6;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 640px;
+}
+
+/* Services Grid: Exactly 3 columns on desktop, 2 rows */
 .ref-services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 @media (max-width: 1024px) {
   .ref-services-grid {
@@ -605,17 +696,18 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
-/* Interactive Service Card - Navy icons and text on warm cream backgrounds */
-.service-card-interactive {
-  background: var(--cream-surface);
-  border: 1px solid var(--cream-border);
-  border-radius: var(--radius);
-  padding: 2rem 1.75rem;
+/* Interactive Service Card - Reference Design */
+.service-card-ref {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(20, 33, 61, 0.1);
+  border-radius: 12px;
+  padding: 2.25rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.25rem;
-  box-shadow: 0 2px 8px rgba(20, 33, 61, 0.04);
+  box-shadow: 0 4px 18px rgba(20, 33, 61, 0.05);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.28s ease,
@@ -627,78 +719,136 @@ input:focus, select:focus, textarea:focus {
   outline: none;
 }
 
-/* Hover, Focus & Active States */
-.service-card-interactive:hover {
+.service-card-ref:hover {
   transform: translateY(-5px);
-  box-shadow: 0 14px 30px -6px rgba(20, 33, 61, 0.12), 0 3px 8px -2px rgba(20, 33, 61, 0.04);
+  box-shadow: 0 14px 32px -4px rgba(20, 33, 61, 0.12), 0 3px 8px -2px rgba(20, 33, 61, 0.04);
   border-color: var(--navy);
+  background: #FFFFFF;
 }
 
-.service-card-interactive:focus-visible {
+.service-card-ref:focus-visible {
   box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.22);
   border-color: var(--navy);
 }
 
-.service-card-interactive:active {
+.service-card-ref:active {
   transform: translateY(-2px);
 }
 
-/* Tiny coral interactive accent highlight at top edge on hover */
-.service-card-interactive::before {
+/* Highlighted First-Card Border Treatment: subtle navy border + coral top edge accent */
+.service-card-ref.is-first-highlight {
+  background: #FFFFFF;
+  border: 1.5px solid var(--navy);
+  box-shadow: 0 8px 28px rgba(20, 33, 61, 0.09);
+  position: relative;
+}
+
+.service-card-ref.is-first-highlight::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 3.5px;
   background: var(--coral);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-.service-card-interactive:hover::before {
-  opacity: 1;
+  border-radius: 12px 12px 0 0;
 }
 
-/* Navy icon box on warm cream card */
-.service-icon-box {
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
+/* Large navy line icon at upper-left */
+.service-card-line-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--navy);
+  margin-bottom: 1.25rem;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), color 0.28s ease;
+}
+
+.service-card-ref:hover .service-card-line-icon {
+  transform: translateY(-2px) scale(1.08);
+}
+
+/* Prominent Navy Serif Title */
+.service-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--navy);
+  margin: 0 0 0.65rem 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* Readable Inter Description */
+.service-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: #4B5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Service Card Footer with Circular Arrow Indicator */
+.service-card-ref-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(20, 33, 61, 0.08);
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.service-card-schedule-text {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+  transition: color 0.2s ease;
+}
+
+.service-card-circle-arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(20, 33, 61, 0.06);
+  border: 1px solid rgba(20, 33, 61, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--navy);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
-  background: rgba(20, 33, 61, 0.06);
-  color: var(--navy);
-  border: 1px solid rgba(20, 33, 61, 0.12);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.28s ease,
-              color 0.28s ease,
-              border-color 0.28s ease;
 }
 
-.service-card-interactive:hover .service-icon-box {
-  transform: scale(1.08) translateY(-2px);
+.service-card-ref:hover .service-card-circle-arrow {
   background: var(--navy);
-  color: var(--cream-text);
+  color: #FFFFFF;
   border-color: var(--navy);
+  transform: translateX(4px);
 }
 
-/* Animated interactive arrow */
-.service-card-arrow {
-  display: inline-flex;
+/* Explore All Services Action with Decorative Horizontal Lines */
+.services-explore-wrapper {
+  display: flex;
   align-items: center;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), color 0.28s ease;
-  color: var(--navy);
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3.25rem;
+  position: relative;
+  z-index: 1;
 }
 
-.service-card-interactive:hover .service-card-arrow {
-  transform: translateX(5px);
-  color: var(--coral);
+.services-explore-line {
+  flex: 1;
+  max-width: 140px;
+  height: 1px;
+  background: rgba(20, 33, 61, 0.22);
 }
 
-/* Explore All Services Action Button */
-.btn-explore-services {
+/* Navy Pill-Shaped Button */
+.services-pill-btn {
   background: var(--navy);
   color: var(--cream-text);
   border: 1px solid var(--navy);
@@ -706,26 +856,37 @@ input:focus, select:focus, textarea:focus {
   font-weight: 600;
   font-size: 15px;
   padding: 0.85rem 2.25rem;
-  border-radius: 6px;
+  border-radius: 9999px;
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(20, 33, 61, 0.18);
+  box-shadow: 0 4px 16px rgba(20, 33, 61, 0.18);
   outline: none;
 }
-.btn-explore-services:hover {
+
+.services-pill-btn:hover {
   background: var(--navy-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(20, 33, 61, 0.28);
+  box-shadow: 0 8px 24px rgba(20, 33, 61, 0.28);
   color: #FFFFFF;
 }
-.btn-explore-services:focus-visible {
+
+.services-pill-btn:focus-visible {
   box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.28);
 }
-.btn-explore-services:active {
+
+.services-pill-btn:active {
   transform: translateY(0);
+}
+
+.services-pill-btn:hover .services-pill-arrow {
+  transform: translateX(3px);
+}
+
+.services-pill-arrow {
+  transition: transform 0.2s ease;
 }
 
 /* Tasteful scroll-reveal animation */

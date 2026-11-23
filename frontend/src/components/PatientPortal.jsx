@@ -68,6 +68,9 @@ export default function PatientPortal({ user }) {
   const [emergencyNotice, setEmergencyNotice] = useState('');
   const [actionLoading, setActionLoading] = useState(false);
 
+  // Services display toggle
+  const [showAllServices, setShowAllServices] = useState(false);
+
   // Full-screen Chat Assistant Modal state
   const [isChatOpen, setIsChatOpen] = useState(false);
 
@@ -149,18 +152,18 @@ export default function PatientPortal({ user }) {
     'Squint': 'Clinical strabismus evaluation, binocular alignment diagnostics, and surgical motor re-alignment.'
   };
 
-  const getServiceIcon = (spec) => {
+  const getServiceIcon = (spec, size = 32) => {
     const s = (spec || '').toLowerCase();
-    if (s.includes('cataract')) return <Eye size={22} strokeWidth={2} />;
-    if (s.includes('cornea')) return <Sparkles size={22} strokeWidth={2} />;
-    if (s.includes('glaucoma')) return <Activity size={22} strokeWidth={2} />;
-    if (s.includes('retina')) return <Focus size={22} strokeWidth={2} />;
-    if (s.includes('paediatric') || s.includes('pediatric')) return <Baby size={22} strokeWidth={2} />;
-    if (s.includes('refractive') || s.includes('lasik')) return <Zap size={22} strokeWidth={2} />;
-    if (s.includes('dry')) return <Droplets size={22} strokeWidth={2} />;
-    if (s.includes('squint') || s.includes('strabismus')) return <EyeOff size={22} strokeWidth={2} />;
-    if (s.includes('general')) return <Stethoscope size={22} strokeWidth={2} />;
-    return <Eye size={22} strokeWidth={2} />;
+    if (s.includes('cataract')) return <Eye size={size} strokeWidth={1.65} />;
+    if (s.includes('cornea')) return <Sparkles size={size} strokeWidth={1.65} />;
+    if (s.includes('glaucoma')) return <Activity size={size} strokeWidth={1.65} />;
+    if (s.includes('retina')) return <Focus size={size} strokeWidth={1.65} />;
+    if (s.includes('paediatric') || s.includes('pediatric')) return <Baby size={size} strokeWidth={1.65} />;
+    if (s.includes('refractive') || s.includes('lasik')) return <Zap size={size} strokeWidth={1.65} />;
+    if (s.includes('dry')) return <Droplets size={size} strokeWidth={1.65} />;
+    if (s.includes('squint') || s.includes('strabismus')) return <EyeOff size={size} strokeWidth={1.65} />;
+    if (s.includes('general')) return <Stethoscope size={size} strokeWidth={1.65} />;
+    return <Eye size={size} strokeWidth={1.65} />;
   };
 
   const getDoctorMeta = (name) => {
@@ -581,128 +584,149 @@ export default function PatientPortal({ user }) {
         )}
       </div>
 
-      {/* 4. Comprehensive Eye Care Services Section (Recreated with Reference Direction) */}
-      <div id="section-services" style={{ display: 'grid', gap: '2rem', marginTop: '0.5rem' }}>
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.45rem',
-            fontSize: '0.78rem',
-            fontWeight: 700,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--navy)',
-            marginBottom: '0.65rem'
-          }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--coral)' }} />
-            OUR SERVICES
-          </div>
-          <h2 style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(2.1rem, 3.4vw, 2.75rem)',
-            fontWeight: 400,
-            color: 'var(--navy)',
-            margin: '0 0 0.85rem 0',
-            lineHeight: 1.18,
-            letterSpacing: '-0.015em'
-          }}>
-            Comprehensive Eye Care Services
-          </h2>
-          <p style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '1.05rem',
-            color: 'var(--text-muted)',
-            lineHeight: 1.6,
-            margin: 0
-          }}>
-            Sub-speciality clinics equipped for advanced diagnostic evaluations and microsurgical interventions
-          </p>
-        </div>
+      {/* 4. Comprehensive Eye Care Services Section (Exact Reference Target Reproduction) */}
+      {(() => {
+        const primarySpecialities = ['Cataract', 'Cornea', 'Glaucoma', 'Retina', 'Paediatric', 'Refractive'];
+        const otherSpecialities = specialities.filter(s => !primarySpecialities.includes(s));
+        const orderedSpecialities = [
+          ...primarySpecialities.filter(s => specialities.includes(s)),
+          ...otherSpecialities
+        ];
+        const displayedSpecialities = showAllServices ? orderedSpecialities : orderedSpecialities.slice(0, 6);
 
-        <div className="ref-services-grid">
-          {specialities.map((spec, idx) => {
-            return (
-              <div
-                key={spec}
-                className="service-card-interactive service-card-reveal"
-                style={{ animationDelay: `${Math.min(idx * 75, 450)}ms` }}
-                onClick={() => scrollToBooking(null, spec)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    scrollToBooking(null, spec);
-                  }
-                }}
-                tabIndex={0}
-                role="button"
-                title={`Click to book consultation for ${spec}`}
-              >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-                    <div className="service-icon-box">
-                      {getServiceIcon(spec)}
-                    </div>
-                    <span className="badge badge-primary" style={{ fontSize: '12px' }}>
-                      Active Clinic
-                    </span>
-                  </div>
+        return (
+          <section id="section-services" className="services-reference-section" aria-labelledby="services-heading">
+            {/* Subtle, oversized eye/iris visual on the upper-right side */}
+            <svg
+              className="services-bg-eye"
+              viewBox="0 0 500 500"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <ellipse cx="320" cy="180" rx="200" ry="120" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 4" />
+              <circle cx="320" cy="180" r="95" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="320" cy="180" r="60" stroke="currentColor" strokeWidth="1.2" />
+              <circle cx="320" cy="180" r="30" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="320" y1="85" x2="320" y2="120" stroke="currentColor" strokeWidth="1" />
+              <line x1="320" y1="240" x2="320" y2="275" stroke="currentColor" strokeWidth="1" />
+              <line x1="225" y1="180" x2="260" y2="180" stroke="currentColor" strokeWidth="1" />
+              <line x1="380" y1="180" x2="415" y2="180" stroke="currentColor" strokeWidth="1" />
+              <line x1="252" y1="112" x2="277" y2="137" stroke="currentColor" strokeWidth="1" />
+              <line x1="363" y1="223" x2="388" y2="248" stroke="currentColor" strokeWidth="1" />
+              <line x1="252" y1="248" x2="277" y2="223" stroke="currentColor" strokeWidth="1" />
+              <line x1="363" y1="137" x2="388" y2="112" stroke="currentColor" strokeWidth="1" />
+              <path d="M 100 180 C 200 40, 440 40, 540 180" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M 100 180 C 200 320, 440 320, 540 180" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
 
-                  <h3 style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.25rem',
-                    fontWeight: 600,
-                    color: 'var(--navy)',
-                    margin: '0 0 0.5rem 0',
-                    lineHeight: 1.3
-                  }}>
-                    {spec} {spec !== 'Cataract' && spec !== 'Glaucoma' && spec !== 'Retina' && !spec.toLowerCase().includes('paediatric') && !spec.toLowerCase().includes('pediatric') ? 'Care' : 'Clinic'}
-                  </h3>
-                  <p style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '14.5px',
-                    color: 'var(--navy)',
-                    opacity: 0.84,
-                    lineHeight: 1.6,
-                    margin: 0
-                  }}>
-                    {specialityDescriptions[spec] || 'Specialized diagnostic consultations, imaging, and personalized clinical treatment plans.'}
-                  </p>
-                </div>
+            {/* Subtle curved decorative line in the lower-left corner */}
+            <svg
+              className="services-bg-curve"
+              viewBox="0 0 350 250"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M -20 220 C 80 220, 140 160, 200 90 C 240 40, 280 10, 360 -10"
+                stroke="currentColor"
+                strokeWidth="1.2"
+              />
+              <path
+                d="M -20 250 C 90 250, 160 190, 220 120 C 260 70, 310 40, 390 20"
+                stroke="currentColor"
+                strokeWidth="0.8"
+                strokeDasharray="4 4"
+              />
+            </svg>
 
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderTop: '1px solid rgba(20, 33, 61, 0.09)',
-                  paddingTop: '1rem',
-                  marginTop: '1.15rem'
-                }}>
-                  <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--navy)', fontFamily: 'var(--font-body)' }}>
-                    Schedule for {spec}
-                  </span>
-                  <span className="service-card-arrow">
-                    <ArrowRight size={16} />
-                  </span>
-                </div>
+            {/* Centered Heading with Thin Horizontal Decorative Lines */}
+            <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 1 }}>
+              <div className="services-eyebrow-wrapper">
+                <span className="services-eyebrow-line" />
+                <span className="services-eyebrow-text">OUR SERVICES</span>
+                <span className="services-eyebrow-line" />
               </div>
-            );
-          })}
-        </div>
+              <h2 id="services-heading" className="services-serif-heading">
+                Comprehensive Eye Care Services
+              </h2>
+              <p className="services-desc-text">
+                Sub-speciality clinics equipped for advanced diagnostic evaluations and microsurgical interventions
+              </p>
+            </div>
 
-        {/* Explore All Services Action Button */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-          <button
-            type="button"
-            onClick={() => scrollToBooking()}
-            className="btn-explore-services"
-            title="Explore all eye care services and book an appointment"
-          >
-            <span>Explore All Services</span>
-            <ArrowRight size={16} />
-          </button>
-        </div>
-      </div>
+            {/* Service Cards: Exactly 3 columns on desktop, 2 rows matching reference */}
+            <div className="ref-services-grid">
+              {displayedSpecialities.map((spec, idx) => {
+                const isFirst = idx === 0; // Highlighted first-card border treatment
+                return (
+                  <div
+                    key={spec}
+                    className={`service-card-ref service-card-reveal ${isFirst ? 'is-first-highlight' : ''}`}
+                    style={{ animationDelay: `${Math.min(idx * 75, 450)}ms` }}
+                    onClick={() => scrollToBooking(null, spec)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        scrollToBooking(null, spec);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    title={`Click to book consultation for ${spec}`}
+                  >
+                    <div>
+                      {/* Large navy line icon at upper-left */}
+                      <div className="service-card-line-icon">
+                        {getServiceIcon(spec, 32)}
+                      </div>
+
+                      {/* Prominent navy serif title */}
+                      <h3 className="service-card-title">
+                        {spec} {spec !== 'Cataract' && spec !== 'Glaucoma' && spec !== 'Retina' && !spec.toLowerCase().includes('paediatric') && !spec.toLowerCase().includes('pediatric') ? 'Care' : 'Clinic'}
+                      </h3>
+
+                      {/* Readable Inter description */}
+                      <p className="service-card-desc">
+                        {specialityDescriptions[spec] || 'Specialized diagnostic consultations, imaging, and personalized clinical treatment plans.'}
+                      </p>
+                    </div>
+
+                    {/* Footer with Small circular arrow indicator at bottom-right */}
+                    <div className="service-card-ref-footer">
+                      <span className="service-card-schedule-text">
+                        Schedule for {spec}
+                      </span>
+                      <div className="service-card-circle-arrow">
+                        <ArrowRight size={14} />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Centered Explore All Services Action with Thin Horizontal Decorative Lines */}
+            <div className="services-explore-wrapper">
+              <span className="services-explore-line" />
+              <button
+                type="button"
+                onClick={() => {
+                  setShowAllServices(true);
+                  scrollToBooking();
+                }}
+                className="services-pill-btn"
+                title="Explore all services and book a consultation"
+              >
+                <span>Explore All Services</span>
+                <ArrowRight size={16} className="services-pill-arrow" />
+              </button>
+              <span className="services-explore-line" />
+            </div>
+          </section>
+        );
+      })()}
 
       {/* 5. Meet Our Specialist Ophthalmologists */}
       <div id="section-doctors" style={{ display: 'grid', gap: '1.5rem', marginTop: '0.5rem' }}>
