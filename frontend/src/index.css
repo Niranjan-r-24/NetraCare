@@ -585,35 +585,37 @@ input:focus, select:focus, textarea:focus {
   font-weight: 600;
 }
 
-/* Services Grid: Clean cards with breathing room */
+/* Services Grid: Clean 3-column cards with breathing room */
 .ref-services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1.75rem;
   width: 100%;
 }
 @media (max-width: 1024px) {
   .ref-services-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 }
 @media (max-width: 640px) {
   .ref-services-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
 
-/* Interactive Service Card */
+/* Interactive Service Card - Navy icons and text on warm cream backgrounds */
 .service-card-interactive {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: var(--cream-surface);
+  border: 1px solid var(--cream-border);
   border-radius: var(--radius);
-  padding: 1.85rem 1.65rem;
+  padding: 2rem 1.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.15rem;
-  box-shadow: var(--shadow-xs);
+  gap: 1.25rem;
+  box-shadow: 0 2px 8px rgba(20, 33, 61, 0.04);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.28s ease,
@@ -623,14 +625,6 @@ input:focus, select:focus, textarea:focus {
   overflow: hidden;
   text-align: left;
   outline: none;
-}
-
-/* Subtle navy/cream visual variations across service cards */
-.service-card-interactive.variant-warm {
-  background: #FCF9F3;
-}
-.service-card-interactive.variant-clean {
-  background: #FFFFFF;
 }
 
 /* Hover, Focus & Active States */
@@ -665,38 +659,26 @@ input:focus, select:focus, textarea:focus {
   opacity: 1;
 }
 
-/* Icon box inside service cards */
+/* Navy icon box on warm cream card */
 .service-icon-box {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: rgba(20, 33, 61, 0.06);
+  color: var(--navy);
+  border: 1px solid rgba(20, 33, 61, 0.12);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.28s ease,
               color 0.28s ease,
               border-color 0.28s ease;
 }
 
-.service-icon-box.icon-navy {
-  background: var(--navy);
-  color: var(--cream-text);
-  border: 1px solid var(--navy);
-}
-
-.service-icon-box.icon-cream {
-  background: var(--cream-surface);
-  color: var(--navy);
-  border: 1px solid var(--cream-border);
-}
-
 .service-card-interactive:hover .service-icon-box {
   transform: scale(1.08) translateY(-2px);
-}
-
-.service-card-interactive:hover .service-icon-box.icon-cream {
   background: var(--navy);
   color: var(--cream-text);
   border-color: var(--navy);
@@ -715,6 +697,37 @@ input:focus, select:focus, textarea:focus {
   color: var(--coral);
 }
 
+/* Explore All Services Action Button */
+.btn-explore-services {
+  background: var(--navy);
+  color: var(--cream-text);
+  border: 1px solid var(--navy);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0.85rem 2.25rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(20, 33, 61, 0.18);
+  outline: none;
+}
+.btn-explore-services:hover {
+  background: var(--navy-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(20, 33, 61, 0.28);
+  color: #FFFFFF;
+}
+.btn-explore-services:focus-visible {
+  box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.28);
+}
+.btn-explore-services:active {
+  transform: translateY(0);
+}
+
 /* Tasteful scroll-reveal animation */
 @keyframes serviceCardReveal {
   from {
@@ -729,6 +742,141 @@ input:focus, select:focus, textarea:focus {
 
 .service-card-reveal {
   animation: serviceCardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Editorial Clinical Insight of the Day */
+.editorial-insight-banner {
+  background: var(--cream-surface);
+  border: 1px solid var(--cream-border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 1.5rem;
+  box-shadow: 0 2px 8px rgba(20, 33, 61, 0.04);
+}
+
+.editorial-insight-watermark {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  opacity: 0.04;
+  color: var(--navy);
+}
+
+.editorial-insight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.editorial-insight-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 0.35rem 0 0 0;
+  letter-spacing: -0.015em;
+}
+
+.editorial-insight-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.editorial-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+  outline: none;
+}
+
+.editorial-btn-navy {
+  background: var(--navy);
+  color: var(--cream-text);
+  border: 1px solid var(--navy);
+}
+.editorial-btn-navy:hover:not(:disabled) {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(20, 33, 61, 0.2);
+}
+.editorial-btn-navy:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.editorial-btn-ghost {
+  background: #ffffff;
+  color: var(--navy);
+  border: 1px solid var(--cream-border);
+}
+.editorial-btn-ghost:hover {
+  background: var(--cream-surface);
+  border-color: var(--navy);
+  transform: translateY(-1px);
+}
+.editorial-btn-ghost.is-active {
+  background: #ffffff;
+  border-color: var(--coral);
+  color: var(--navy);
+}
+
+.editorial-quote-container {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 1.75rem 2rem;
+  border: 1px solid rgba(20, 33, 61, 0.08);
+  border-left: 4px solid var(--navy);
+  position: relative;
+  display: grid;
+  gap: 0.85rem;
+  z-index: 1;
+}
+
+.editorial-quote-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 1.8vw, 1.38rem);
+  color: var(--navy);
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.editorial-quote-caveat {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.editorial-caveat-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  flex-shrink: 0;
 }
 
 /* Respect reduced-motion preferences */

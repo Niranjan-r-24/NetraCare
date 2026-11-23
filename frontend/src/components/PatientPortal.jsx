@@ -463,28 +463,169 @@ export default function PatientPortal({ user }) {
         </div>
       </div>
 
-      {/* 3. Specialized Services Grid */}
-      <div id="section-services" style={{ display: 'grid', gap: '1.5rem', marginTop: '0.5rem' }}>
-        <div>
-          <div className="ref-eyebrow">
-            <Activity size={14} /> Our Care Specialities
+      {/* 3. Clinical Insight of the Day - Premium Editorial Presentation (Immediately Before Services) */}
+      <div id="section-fact" className="editorial-insight-banner">
+        {/* Subtle decorative ophthalmological watermark */}
+        <svg
+          className="editorial-insight-watermark"
+          viewBox="0 0 100 100"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          aria-hidden="true"
+        >
+          <path d="M 10 50 Q 50 15 90 50 Q 50 85 10 50 Z" />
+          <circle cx="50" cy="50" r="18" />
+          <circle cx="50" cy="50" r="8" fill="currentColor" fillOpacity="0.2" />
+        </svg>
+
+        <div className="editorial-insight-header">
+          <div>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--navy)',
+              opacity: 0.85
+            }}>
+              <Sparkles size={14} color="var(--coral)" />
+              Ophthalmic Clinical Note
+            </div>
+            <h2 className="editorial-insight-title">
+              Clinical Insight of the Day
+            </h2>
           </div>
-          <h2 className="ref-section-title">
+
+          <div className="editorial-insight-toolbar">
+            <button
+              type="button"
+              onClick={() => loadFact(factOfTheDay)}
+              disabled={factLoading}
+              className="editorial-btn editorial-btn-navy"
+              title="Fetch new clinical insight"
+            >
+              <RefreshCw size={14} className={factLoading ? 'spin' : ''} />
+              <span>Next Insight</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleCopyInsight}
+              className="editorial-btn editorial-btn-ghost"
+              title="Copy clinical insight to clipboard"
+            >
+              {copiedInsight ? <Check size={14} color="var(--navy)" /> : <Copy size={14} />}
+              <span>{copiedInsight ? 'Copied' : 'Copy'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleLikeInsight}
+              className={`editorial-btn editorial-btn-ghost ${hasLikedInsight ? 'is-active' : ''}`}
+              title="Mark clinical insight as helpful"
+            >
+              <ThumbsUp size={14} color={hasLikedInsight ? 'var(--coral)' : 'var(--navy)'} />
+              <span>Helpful ({helpfulCount})</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Editorial Prominent Quote Block */}
+        <div className="editorial-quote-container">
+          <p className="editorial-quote-text">
+            "{factLoading ? 'Consulting ophthalmology clinical knowledge base...' : (factOfTheDay || 'The human eye can distinguish approximately 10 million different colors.')}"
+          </p>
+          <div className="editorial-quote-caveat">
+            <span className="editorial-caveat-dot" />
+            <span>{factCaveat}</span>
+          </div>
+        </div>
+
+        {/* Expandable Doctor's Protocol */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', paddingTop: '0.25rem' }}>
+          <button
+            type="button"
+            onClick={() => setShowDoctorTip(!showDoctorTip)}
+            className="editorial-btn editorial-btn-ghost"
+            style={{ fontSize: '0.84rem' }}
+          >
+            <Stethoscope size={14} color="var(--navy)" />
+            <span>{showDoctorTip ? 'Hide Specialist Protocol' : 'Show Specialist Practical Protocol (20-20-20 Rule)'}</span>
+          </button>
+          <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontFamily: 'var(--font-body)' }}>
+            Reviewed by NetraCare Clinical Quality Board
+          </span>
+        </div>
+
+        {showDoctorTip && (
+          <div style={{
+            background: '#ffffff',
+            borderRadius: '6px',
+            padding: '1.4rem 1.65rem',
+            border: '1px solid var(--cream-border)',
+            borderLeft: '3px solid var(--coral)',
+            display: 'grid',
+            gap: '0.65rem'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--navy)', fontWeight: 600, fontSize: '0.95rem', fontFamily: 'var(--font-body)' }}>
+              <Eye size={16} color="var(--navy)" /> Specialist Daily Eye Care Protocol:
+            </div>
+            <p style={{ fontSize: '0.92rem', color: 'var(--navy)', margin: 0, lineHeight: 1.7, fontFamily: 'var(--font-body)', opacity: 0.9 }}>
+              • <b>Digital Screen Strain (20-20-20 Rule):</b> Every 20 minutes of screen exposure, shift your gaze to an object 20 feet away for at least 20 seconds to relax your ciliary accommodation muscles.<br />
+              • <b>Blinking & Lubrication:</b> We blink 66% less frequently while staring at screens. Deliberately blink fully to replenish the tear film lipid layer.<br />
+              • <b>UV Protection:</b> Always wear 100% UV400-rated sunglasses outdoors to prevent premature lens cataract formation and corneal photokeratitis.
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* 4. Comprehensive Eye Care Services Section (Recreated with Reference Direction) */}
+      <div id="section-services" style={{ display: 'grid', gap: '2rem', marginTop: '0.5rem' }}>
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.45rem',
+            fontSize: '0.78rem',
+            fontWeight: 700,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--navy)',
+            marginBottom: '0.65rem'
+          }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--coral)' }} />
+            OUR SERVICES
+          </div>
+          <h2 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(2.1rem, 3.4vw, 2.75rem)',
+            fontWeight: 400,
+            color: 'var(--navy)',
+            margin: '0 0 0.85rem 0',
+            lineHeight: 1.18,
+            letterSpacing: '-0.015em'
+          }}>
             Comprehensive Eye Care Services
           </h2>
-          <p className="ref-section-sub">
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '1.05rem',
+            color: 'var(--text-muted)',
+            lineHeight: 1.6,
+            margin: 0
+          }}>
             Sub-speciality clinics equipped for advanced diagnostic evaluations and microsurgical interventions
           </p>
         </div>
 
         <div className="ref-services-grid">
           {specialities.map((spec, idx) => {
-            const isWarm = idx % 2 === 1; // Subtle navy/cream visual variation
-            const isNavyIcon = idx % 3 === 0; // Balanced icon background variation
             return (
               <div
                 key={spec}
-                className={`service-card-interactive service-card-reveal ${isWarm ? 'variant-warm' : 'variant-clean'}`}
+                className="service-card-interactive service-card-reveal"
                 style={{ animationDelay: `${Math.min(idx * 75, 450)}ms` }}
                 onClick={() => scrollToBooking(null, spec)}
                 onKeyDown={(e) => {
@@ -498,8 +639,8 @@ export default function PatientPortal({ user }) {
                 title={`Click to book consultation for ${spec}`}
               >
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.15rem' }}>
-                    <div className={`service-icon-box ${isNavyIcon ? 'icon-navy' : 'icon-cream'}`}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+                    <div className="service-icon-box">
                       {getServiceIcon(spec)}
                     </div>
                     <span className="badge badge-primary" style={{ fontSize: '12px' }}>
@@ -507,10 +648,24 @@ export default function PatientPortal({ user }) {
                     </span>
                   </div>
 
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--navy)', margin: '0 0 0.45rem 0' }}>
+                  <h3 style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '1.25rem',
+                    fontWeight: 600,
+                    color: 'var(--navy)',
+                    margin: '0 0 0.5rem 0',
+                    lineHeight: 1.3
+                  }}>
                     {spec} {spec !== 'Cataract' && spec !== 'Glaucoma' && spec !== 'Retina' && !spec.toLowerCase().includes('paediatric') && !spec.toLowerCase().includes('pediatric') ? 'Care' : 'Clinic'}
                   </h3>
-                  <p style={{ fontSize: '14.5px', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0 }}>
+                  <p style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '14.5px',
+                    color: 'var(--navy)',
+                    opacity: 0.84,
+                    lineHeight: 1.6,
+                    margin: 0
+                  }}>
                     {specialityDescriptions[spec] || 'Specialized diagnostic consultations, imaging, and personalized clinical treatment plans.'}
                   </p>
                 </div>
@@ -519,24 +674,37 @@ export default function PatientPortal({ user }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  borderTop: '1px solid var(--border-light)',
-                  paddingTop: '0.95rem',
-                  marginTop: '0.85rem'
+                  borderTop: '1px solid rgba(20, 33, 61, 0.09)',
+                  paddingTop: '1rem',
+                  marginTop: '1.15rem'
                 }}>
-                  <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--navy)' }}>
+                  <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--navy)', fontFamily: 'var(--font-body)' }}>
                     Schedule for {spec}
                   </span>
                   <span className="service-card-arrow">
-                    <ChevronRight size={17} />
+                    <ArrowRight size={16} />
                   </span>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* Explore All Services Action Button */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+          <button
+            type="button"
+            onClick={() => scrollToBooking()}
+            className="btn-explore-services"
+            title="Explore all eye care services and book an appointment"
+          >
+            <span>Explore All Services</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
       </div>
 
-      {/* 4. Meet Our Specialist Ophthalmologists */}
+      {/* 5. Meet Our Specialist Ophthalmologists */}
       <div id="section-doctors" style={{ display: 'grid', gap: '1.5rem', marginTop: '0.5rem' }}>
         <div>
           <div className="ref-eyebrow">
@@ -603,154 +771,6 @@ export default function PatientPortal({ user }) {
             );
           })}
         </div>
-      </div>
-
-      {/* 5. Clinical Insight of the Day - De-boxed, clean & spacious */}
-      <div id="section-fact" style={{
-        padding: '2rem 2.25rem',
-        background: '#ffffff',
-        border: '1px solid var(--border)',
-        borderRadius: 'var(--radius)',
-        display: 'grid',
-        gap: '1.25rem',
-        marginTop: '0.5rem'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div style={{
-              background: 'var(--cream-surface)',
-              border: '1px solid var(--border)',
-              color: 'var(--navy)',
-              width: '42px',
-              height: '42px',
-              borderRadius: '6px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <Sparkles size={20} />
-            </div>
-            <div>
-              <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block' }}>
-                Ophthalmic Clinical Note
-              </span>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--navy)', margin: 0, letterSpacing: '-0.015em' }}>
-                Clinical Insight of the Day
-              </h3>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              onClick={() => loadFact(factOfTheDay)}
-              disabled={factLoading}
-              className="btn btn-primary btn-sm"
-              style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.86rem', padding: '0.55rem 1.1rem', borderRadius: '6px' }}
-              title="Fetch new clinical fact"
-            >
-              <RefreshCw size={14} className={factLoading ? 'spin' : ''} />
-              Next Insight
-            </button>
-            <button
-              type="button"
-              onClick={handleCopyInsight}
-              className="btn btn-secondary btn-sm"
-              style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.86rem', padding: '0.55rem 1rem', borderRadius: '6px' }}
-              title="Copy insight text"
-            >
-              {copiedInsight ? <Check size={14} color="var(--navy)" /> : <Copy size={14} />}
-              {copiedInsight ? 'Copied' : 'Copy'}
-            </button>
-            <button
-              type="button"
-              onClick={handleLikeInsight}
-              className="btn btn-secondary btn-sm"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '0.86rem',
-                padding: '0.55rem 1rem',
-                background: hasLikedInsight ? 'var(--cream-surface)' : '#ffffff',
-                borderColor: 'var(--border)',
-                color: 'var(--navy)',
-                borderRadius: '6px'
-              }}
-              title="Helpful insight"
-            >
-              <ThumbsUp size={14} color={hasLikedInsight ? 'var(--navy)' : 'var(--text-muted)'} />
-              Helpful ({helpfulCount})
-            </button>
-          </div>
-        </div>
-
-        {/* Insight Statement */}
-        <div style={{
-          background: 'var(--cream-surface)',
-          borderRadius: '6px',
-          padding: '1.5rem 1.75rem',
-          borderLeft: '4px solid var(--navy)'
-        }}>
-          <p style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: '1.2rem',
-            color: 'var(--navy)',
-            fontWeight: 600,
-            lineHeight: 1.55,
-            margin: '0 0 0.5rem 0'
-          }}>
-            "{factLoading ? 'Consulting ophthalmology clinical knowledge base...' : (factOfTheDay || 'The human eye can distinguish approximately 10 million different colors.')}"
-          </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--coral)' }} />
-            <span>{factCaveat}</span>
-          </div>
-        </div>
-
-        {/* Expandable Doctor's Eye Care Tip */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-          <button
-            type="button"
-            onClick={() => setShowDoctorTip(!showDoctorTip)}
-            className="btn btn-secondary btn-sm"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '0.85rem',
-              fontWeight: 500,
-              padding: '0.5rem 0.95rem',
-              borderRadius: '6px'
-            }}
-          >
-            <Stethoscope size={14} color="var(--navy)" />
-            {showDoctorTip ? 'Hide Specialist Protocol' : 'Show Specialist Practical Protocol (20-20-20 Rule)'}
-          </button>
-          <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-            Reviewed by NetraCare Clinical Quality Board
-          </span>
-        </div>
-
-        {showDoctorTip && (
-          <div style={{
-            background: 'var(--cream-surface)',
-            borderRadius: '6px',
-            padding: '1.25rem 1.5rem',
-            border: '1px solid var(--border)',
-            display: 'grid',
-            gap: '0.5rem'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--navy)', fontWeight: 600, fontSize: '0.95rem' }}>
-              <Eye size={16} color="var(--navy)" /> Specialist Daily Eye Care Protocol:
-            </div>
-            <p style={{ fontSize: '0.92rem', color: 'var(--text-body)', margin: 0, lineHeight: 1.65 }}>
-              • <b>Digital Screen Strain (20-20-20 Rule):</b> Every 20 minutes of screen exposure, shift your gaze to an object 20 feet away for at least 20 seconds to relax your ciliary accommodation muscles.<br />
-              • <b>Blinking & Lubrication:</b> We blink 66% less frequently while staring at screens. Deliberately blink fully to replenish the tear film lipid layer.<br />
-              • <b>UV Protection:</b> Always wear 100% UV400-rated sunglasses outdoors to prevent premature lens cataract formation and corneal photokeratitis.
-            </p>
-          </div>
-        )}
       </div>
 
       {/* 3. Emergency Notice Banner (R4) */}
