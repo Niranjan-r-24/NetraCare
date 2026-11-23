@@ -100,30 +100,17 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
               <Eye size={22} />
             </div>
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <h1 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.35rem',
-                  fontWeight: 700,
-                  color: 'var(--cream-text)',
-                  letterSpacing: '-0.02em',
-                  lineHeight: 1.1,
-                  margin: 0
-                }}>
-                  Netra<span style={{ color: 'var(--coral)' }}>Care</span>
-                </h1>
-                <span className="badge" style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  color: 'var(--cream-text)',
-                  fontSize: '0.7rem',
-                  border: '1px solid rgba(244, 237, 224, 0.2)',
-                  padding: '0.1rem 0.45rem',
-                  borderRadius: '4px',
-                  fontWeight: 500
-                }}>
-                  Clinical EHR
-                </span>
-              </div>
+              <h1 style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.35rem',
+                fontWeight: 700,
+                color: 'var(--cream-text)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
+                margin: 0
+              }}>
+                Netra<span style={{ color: 'var(--coral)' }}>Care</span>
+              </h1>
               <span className="navbar-subtitle" style={{ fontSize: '0.78rem', color: '#A0ADC0', fontWeight: 400, display: 'block', marginTop: '2px' }}>
                 Specialized Eye Care & Clinical Operations
               </span>
@@ -133,30 +120,27 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
 
         {/* Right: User Profile, Switch Role & Logout */}
         {user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
-            {/* User Profile */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexShrink: 0 }}>
+            {/* User Profile - Compact & consistent with action buttons */}
             <div style={{
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.65rem',
-              padding: '0.35rem 0.85rem',
+              gap: '0.55rem',
+              height: '36px',
+              padding: '0 0.85rem',
               background: 'rgba(255, 255, 255, 0.08)',
               borderRadius: '6px',
-              border: '1px solid rgba(244, 237, 224, 0.18)',
-              maxWidth: '240px'
+              border: '1px solid rgba(244, 237, 224, 0.2)',
+              boxSizing: 'border-box'
             }}>
               <div style={{
-                width: '30px',
-                height: '30px',
+                width: '24px',
+                height: '24px',
                 borderRadius: '4px',
-                background: user.role === 'doctor'
-                  ? 'var(--navy-light)'
-                  : user.role === 'staff'
-                  ? '#d97706'
-                  : 'var(--navy-light)',
-                color: '#ffffff',
+                background: 'rgba(255, 255, 255, 0.14)',
+                color: 'var(--cream-text)',
                 fontWeight: 600,
-                fontSize: '0.8rem',
+                fontSize: '0.72rem',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -164,21 +148,27 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
               }}>
                 {getInitials(user.name)}
               </div>
-              <div style={{ textAlign: 'left', minWidth: 0, overflow: 'hidden' }}>
-                <div style={{
-                  fontSize: '0.85rem',
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'left', minWidth: 0 }}>
+                <span style={{
+                  fontSize: '0.82rem',
                   fontWeight: 600,
                   color: 'var(--cream-text)',
-                  lineHeight: 1.2,
+                  lineHeight: 1.15,
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis'
                 }}>
                   {user.name}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginTop: '1px' }}>
-                  {getRoleBadge(user.role)}
-                </div>
+                </span>
+                <span style={{
+                  fontSize: '0.68rem',
+                  color: '#A0ADC0',
+                  fontWeight: 500,
+                  textTransform: 'capitalize',
+                  lineHeight: 1
+                }}>
+                  {user.role}
+                </span>
               </div>
             </div>
 
@@ -191,12 +181,14 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
                 alignItems: 'center',
                 gap: '6px',
                 fontSize: '0.82rem',
-                padding: '0.5rem 0.95rem',
+                height: '36px',
+                padding: '0 0.95rem',
                 background: 'rgba(255, 255, 255, 0.08)',
                 color: 'var(--cream-text)',
                 borderColor: 'rgba(244, 237, 224, 0.2)',
                 borderRadius: '6px',
-                fontWeight: 500
+                fontWeight: 500,
+                boxSizing: 'border-box'
               }}
             >
               <RefreshCw size={13} color="var(--cream-text)" />
@@ -207,7 +199,17 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
               onClick={onLogout}
               className="btn btn-danger btn-sm"
               title="Sign Out"
-              style={{ padding: '0.5rem 0.85rem', borderRadius: '6px', fontSize: '0.82rem', fontWeight: 500 }}
+              style={{
+                height: '36px',
+                padding: '0 0.85rem',
+                borderRadius: '6px',
+                fontSize: '0.82rem',
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxSizing: 'border-box'
+              }}
             >
               <LogOut size={14} />
             </button>
