@@ -334,10 +334,10 @@ export default function PatientChat({ user, onAppointmentChange, isFullScreen, o
 
                 {/* Message Bubble */}
                 <div style={{
-                  padding: '0.85rem 1.15rem',
+                  padding: '0.95rem 1.25rem',
                   borderRadius: '6px',
-                  fontSize: '0.9rem',
-                  lineHeight: 1.55,
+                  fontSize: '15px',
+                  lineHeight: 1.6,
                   background: m.is_emergency
                     ? '#fef2f2'
                     : (m.role === 'patient'

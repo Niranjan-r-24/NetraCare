@@ -77,25 +77,25 @@ export default function LoginModal({ onLoginSuccess }) {
         border: '1px solid var(--border)',
         background: '#ffffff'
       }}>
-        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
           <div style={{
             background: 'var(--navy-light)',
             color: 'var(--coral)',
-            width: '44px',
-            height: '44px',
+            width: '48px',
+            height: '48px',
             borderRadius: '6px',
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '0.75rem',
+            marginBottom: '0.85rem',
             border: '1px solid rgba(244, 237, 224, 0.15)'
           }}>
-            <Eye size={22} />
+            <Eye size={24} />
           </div>
-          <h2 style={{ fontSize: '1.4rem', fontWeight: 600, color: 'var(--navy)', letterSpacing: '-0.015em' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '26px', fontWeight: 700, color: 'var(--navy)', letterSpacing: '-0.02em', margin: 0 }}>
             Sign In to NetraCare
           </h2>
-          <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+          <p style={{ fontSize: '14.5px', color: 'var(--text-muted)', marginTop: '0.35rem', lineHeight: 1.5 }}>
             Select your clinical role to access your workspace
           </p>
         </div>
@@ -108,17 +108,17 @@ export default function LoginModal({ onLoginSuccess }) {
           padding: '4px',
           borderRadius: '6px',
           gap: '4px',
-          marginBottom: '1.5rem',
+          marginBottom: '1.75rem',
           border: '1px solid var(--border)'
         }}>
           <button
             type="button"
             onClick={() => setRole('patient')}
             style={{
-              padding: '8px 4px',
+              padding: '9px 6px',
               borderRadius: '4px',
-              fontWeight: 600,
-              fontSize: '0.82rem',
+              fontWeight: role === 'patient' ? 600 : 500,
+              fontSize: '14px',
               background: role === 'patient' ? 'var(--navy)' : 'transparent',
               color: role === 'patient' ? 'var(--cream-text)' : 'var(--text-muted)',
               border: role === 'patient' ? '1px solid var(--navy)' : '1px solid transparent',
@@ -128,16 +128,16 @@ export default function LoginModal({ onLoginSuccess }) {
               gap: '6px'
             }}
           >
-            <User size={14} color={role === 'patient' ? 'var(--cream-text)' : 'var(--text-muted)'} /> Patient
+            <User size={15} color={role === 'patient' ? 'var(--cream-text)' : 'var(--text-muted)'} /> Patient
           </button>
           <button
             type="button"
             onClick={() => setRole('doctor')}
             style={{
-              padding: '8px 4px',
+              padding: '9px 6px',
               borderRadius: '4px',
-              fontWeight: 600,
-              fontSize: '0.82rem',
+              fontWeight: role === 'doctor' ? 600 : 500,
+              fontSize: '14px',
               background: role === 'doctor' ? 'var(--navy)' : 'transparent',
               color: role === 'doctor' ? 'var(--cream-text)' : 'var(--text-muted)',
               border: role === 'doctor' ? '1px solid var(--navy)' : '1px solid transparent',
@@ -147,16 +147,16 @@ export default function LoginModal({ onLoginSuccess }) {
               gap: '6px'
             }}
           >
-            <Stethoscope size={14} color={role === 'doctor' ? 'var(--cream-text)' : 'var(--text-muted)'} /> Doctor
+            <Stethoscope size={15} color={role === 'doctor' ? 'var(--cream-text)' : 'var(--text-muted)'} /> Doctor
           </button>
           <button
             type="button"
             onClick={() => setRole('staff')}
             style={{
-              padding: '8px 4px',
+              padding: '9px 6px',
               borderRadius: '4px',
-              fontWeight: 600,
-              fontSize: '0.82rem',
+              fontWeight: role === 'staff' ? 600 : 500,
+              fontSize: '14px',
               background: role === 'staff' ? 'var(--navy)' : 'transparent',
               color: role === 'staff' ? 'var(--cream-text)' : 'var(--text-muted)',
               border: role === 'staff' ? '1px solid var(--navy)' : '1px solid transparent',
@@ -166,21 +166,21 @@ export default function LoginModal({ onLoginSuccess }) {
               gap: '6px'
             }}
           >
-            <ShieldCheck size={14} color={role === 'staff' ? 'var(--cream-text)' : 'var(--text-muted)'} /> Staff
+            <ShieldCheck size={15} color={role === 'staff' ? 'var(--cream-text)' : 'var(--text-muted)'} /> Staff
           </button>
         </div>
 
         {error && (
-          <div className="alert alert-danger" style={{ marginBottom: '1.15rem', padding: '0.75rem 0.9rem', borderRadius: '6px' }}>
+          <div className="alert alert-danger" style={{ marginBottom: '1.25rem', padding: '0.85rem 1rem', borderRadius: '6px', fontSize: '14px' }}>
             <span>{error}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
           {role === 'patient' && (
-            <div style={{ display: 'grid', gap: '1.15rem' }}>
+            <div style={{ display: 'grid', gap: '1.25rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.4rem' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: 'var(--navy)', marginBottom: '0.45rem' }}>
                   Mobile Number (10 digits)
                 </label>
                 <input
@@ -191,23 +191,23 @@ export default function LoginModal({ onLoginSuccess }) {
                   placeholder="e.g. 9000000001"
                   style={{
                     width: '100%',
-                    padding: '0.65rem 0.85rem',
+                    padding: '0.75rem 1rem',
                     borderRadius: '6px',
                     border: '1px solid var(--border)',
                     outline: 'none',
-                    fontSize: '0.92rem',
+                    fontSize: '15px',
                     color: 'var(--navy)',
                     background: '#ffffff'
                   }}
                 />
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.35rem' }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.4rem' }}>
+                  <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
                     Prefilled demo profile:
                   </span>
                   <button
                     type="button"
                     onClick={() => handleQuickDemoPatient('9000000001', 'Asha Verma')}
-                    style={{ fontSize: '0.76rem', color: 'var(--navy)', fontWeight: 600, textDecoration: 'underline' }}
+                    style={{ fontSize: '13px', color: 'var(--navy)', fontWeight: 600, textDecoration: 'underline' }}
                   >
                     Asha Verma (9000000001)
                   </button>
@@ -215,7 +215,7 @@ export default function LoginModal({ onLoginSuccess }) {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.4rem' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: 'var(--navy)', marginBottom: '0.45rem' }}>
                   Patient Full Name
                 </label>
                 <input
@@ -226,11 +226,11 @@ export default function LoginModal({ onLoginSuccess }) {
                   placeholder="e.g. Asha Verma"
                   style={{
                     width: '100%',
-                    padding: '0.65rem 0.85rem',
+                    padding: '0.75rem 1rem',
                     borderRadius: '6px',
                     border: '1px solid var(--border)',
                     outline: 'none',
-                    fontSize: '0.92rem',
+                    fontSize: '15px',
                     color: 'var(--navy)',
                     background: '#ffffff'
                   }}

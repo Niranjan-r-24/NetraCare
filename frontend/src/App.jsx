@@ -62,7 +62,7 @@ export default function App() {
             onClose={() => setSidebarOpen(false)}
           />
 
-          <main className="main-content" style={{ padding: '2rem 0 3.5rem 0' }}>
+          <main className="main-content" style={{ padding: '2.5rem 0 4.5rem 0' }}>
             <div className="dashboard-container">
               {currentUser.role === 'patient' && <PatientPortal user={currentUser} />}
               {currentUser.role === 'doctor' && <DoctorDashboard user={currentUser} />}
@@ -76,18 +76,18 @@ export default function App() {
         borderTop: '1px solid rgba(244, 237, 224, 0.12)',
         background: 'var(--navy)',
         color: 'var(--cream-text)',
-        padding: '1.25rem 0',
-        fontSize: '0.84rem',
+        padding: '1.5rem 0',
+        fontSize: '14px',
         marginTop: 'auto'
       }}>
-        <div className="dashboard-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <b style={{ color: 'var(--cream-text)', fontSize: '0.95rem', fontWeight: 600 }}>
+        <div className="dashboard-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <b style={{ fontFamily: 'var(--font-heading)', color: 'var(--cream-text)', fontSize: '1.05rem', fontWeight: 700 }}>
               Netra<span style={{ color: 'var(--coral)' }}>Care</span>
             </b>
-            <span style={{ color: '#A0ADC0', fontSize: '0.82rem' }}>· Specialized Eye Care & Clinical Operations</span>
+            <span style={{ color: '#A0ADC0', fontSize: '13.5px' }}>· Specialized Eye Care & Clinical Operations</span>
           </div>
-          <div style={{ fontSize: '0.8rem', color: '#A0ADC0' }}>
+          <div style={{ fontSize: '13.5px', color: '#A0ADC0' }}>
             Ophthalmic Clinical Health Platform
           </div>
         </div>

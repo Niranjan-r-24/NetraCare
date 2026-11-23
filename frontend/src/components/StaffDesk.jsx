@@ -287,18 +287,20 @@ export default function StaffDesk({ user }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '1rem'
+        gap: '1.5rem'
       }}>
         <div>
           <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: 600,
+            fontFamily: 'var(--font-heading)',
+            fontSize: '30px',
+            fontWeight: 700,
             color: 'var(--navy)',
-            letterSpacing: '-0.02em'
+            letterSpacing: '-0.025em',
+            margin: 0
           }}>
             Admin & Clinic Operations Desk
           </h2>
-          <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+          <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginTop: '4px', lineHeight: 1.6 }}>
             Logged in as: <b>{user.name}</b> · Master appointment calendar, walk-in scheduling, triage alerts & late approvals
           </p>
         </div>
@@ -308,8 +310,8 @@ export default function StaffDesk({ user }) {
             onClick={() => setShowBookingModal(true)}
             className="btn btn-primary"
             style={{
-              padding: '0.65rem 1.25rem',
-              fontSize: '0.9rem',
+              padding: '0.75rem 1.45rem',
+              fontSize: '14.5px',
               borderRadius: '6px',
               fontWeight: 600
             }}
@@ -331,35 +333,35 @@ export default function StaffDesk({ user }) {
         {/* Metric 1: Total Appointments Scheduled */}
         <div className="metric-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{
                 background: 'var(--cream-surface)',
                 color: 'var(--navy)',
                 border: '1px solid var(--cream-border)',
-                width: '36px',
-                height: '36px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <Calendar size={18} />
+                <Calendar size={19} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+              <span style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: 500 }}>
                 Appointments
               </span>
             </div>
-            <span className="badge badge-neutral" style={{ fontSize: '0.68rem', padding: '2px 8px' }}>
+            <span className="badge badge-neutral" style={{ fontSize: '12px', padding: '2px 8px' }}>
               +95% in 7 days
             </span>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.75rem' }}>
             <div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--navy)', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '28px', fontWeight: 700, color: 'var(--navy)', lineHeight: 1 }}>
                 {appointments.length}
               </div>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-subtle)', fontWeight: 500 }}>Date: {filterDate}</span>
+              <span style={{ fontSize: '13px', color: 'var(--text-subtle)', fontWeight: 400, marginTop: '3px', display: 'block' }}>Date: {filterDate}</span>
             </div>
 
             {/* Embedded Mini Bar Chart */}
@@ -378,24 +380,24 @@ export default function StaffDesk({ user }) {
           borderColor: urgentCases.length > 0 ? '#fecdd3' : 'var(--border)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{
                 background: '#fee2e2',
                 color: '#b91c1c',
-                width: '36px',
-                height: '36px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <AlertTriangle size={18} />
+                <AlertTriangle size={19} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+              <span style={{ fontSize: '14px', color: '#64748b', fontWeight: 500 }}>
                 Urgent Triage
               </span>
             </div>
-            <span className="badge badge-danger" style={{ fontSize: '0.68rem', padding: '2px 8px' }}>
+            <span className="badge badge-danger" style={{ fontSize: '12px', padding: '2px 8px' }}>
               Red Flag
             </span>
           </div>

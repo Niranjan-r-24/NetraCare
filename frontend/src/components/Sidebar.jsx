@@ -83,35 +83,35 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
         className={`sidebar ${isOpen ? 'open' : 'collapsed'}`}
         aria-hidden={!isOpen}
       >
-        <div style={{ width: '260px', minWidth: '260px', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ width: '270px', minWidth: '270px', height: '100%', display: 'flex', flexDirection: 'column' }}>
           {/* Brand Banner */}
           <div style={{
-            padding: '1.25rem 1.25rem 1rem 1.25rem',
+            padding: '1.5rem 1.5rem 1.25rem 1.5rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '0.85rem'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
               <div style={{
                 background: 'var(--navy-light)',
                 color: 'var(--coral)',
                 border: '1px solid rgba(244, 237, 224, 0.15)',
-                width: '38px',
-                height: '38px',
+                width: '40px',
+                height: '40px',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0
               }}>
-                <Eye size={20} />
+                <Eye size={22} />
               </div>
               <div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--cream-text)', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+                <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--cream-text)', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                   Netra<span style={{ color: 'var(--coral)' }}>Care</span>
                 </div>
-                <span style={{ fontSize: '0.72rem', color: '#9AAAC0', fontWeight: 500 }}>
+                <span style={{ fontSize: '0.78rem', color: '#9AAAC0', fontWeight: 400 }}>
                   Clinical Platform
                 </span>
               </div>
@@ -128,62 +128,21 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
             </button>
           </div>
 
-          {/* Quick Search Bar in Sidebar */}
-          <div style={{ padding: '0.4rem 1.25rem 0.75rem 1.25rem' }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'rgba(255, 255, 255, 0.06)',
-              border: '1px solid rgba(244, 237, 224, 0.14)',
-              borderRadius: '6px',
-              padding: '0.45rem 0.75rem',
-              fontSize: '0.8rem',
-              color: 'var(--cream-text)'
-            }}>
-              <Search size={14} color="#8E9CAE" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search..."
-                style={{
-                  border: 'none',
-                  background: 'transparent',
-                  outline: 'none',
-                  width: '100%',
-                  fontSize: '0.8rem',
-                  color: 'var(--cream-text)'
-                }}
-              />
-              <span style={{
-                fontSize: '0.68rem',
-                background: 'rgba(255, 255, 255, 0.1)',
-                padding: '1px 5px',
-                borderRadius: '4px',
-                color: 'var(--cream-text)',
-                fontWeight: 600
-              }}>
-                ⌘K
-              </span>
-            </div>
-          </div>
-
-          {/* User Identity Chip */}
-          <div style={{ padding: '0 1.25rem 0.75rem 1.25rem' }}>
+          {/* User Identity Chip: Clean and understated */}
+          <div style={{ padding: '0 1.5rem 1rem 1.5rem' }}>
             <div style={{
               background: 'rgba(255, 255, 255, 0.06)',
               borderRadius: '6px',
-              padding: '0.75rem 0.85rem',
-              border: '1px solid rgba(244, 237, 224, 0.14)',
+              padding: '0.85rem 1rem',
+              border: '1px solid rgba(244, 237, 224, 0.12)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
                 <div style={{
-                  width: '32px',
-                  height: '32px',
+                  width: '34px',
+                  height: '34px',
                   borderRadius: '6px',
                   background: user.role === 'doctor'
                     ? 'rgba(244, 237, 224, 0.15)'
@@ -199,16 +158,16 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontWeight: 600,
-                  fontSize: '0.85rem',
+                  fontSize: '0.9rem',
                   flexShrink: 0
                 }}>
-                  {user.role === 'doctor' ? <Stethoscope size={16} /> : user.role === 'staff' ? <ShieldCheck size={16} /> : <User size={16} />}
+                  {user.role === 'doctor' ? <Stethoscope size={17} /> : user.role === 'staff' ? <ShieldCheck size={17} /> : <User size={17} />}
                 </div>
                 <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--cream-text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--cream-text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {user.name}
                   </div>
-                  <div style={{ fontSize: '0.7rem', color: '#9AAAC0', textTransform: 'capitalize', fontWeight: 500 }}>
+                  <div style={{ fontSize: '0.75rem', color: '#9AAAC0', textTransform: 'capitalize', fontWeight: 400 }}>
                     {user.role} workspace
                   </div>
                 </div>
@@ -224,19 +183,19 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
           </div>
 
           {/* Navigation Section */}
-          <div style={{ flex: 1, padding: '0.5rem 0.75rem', overflowY: 'auto' }}>
+          <div style={{ flex: 1, padding: '0.5rem 1rem', overflowY: 'auto' }}>
             <div style={{
-              fontSize: '0.68rem',
+              fontSize: '0.75rem',
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
-              color: '#7D8C9E',
-              padding: '0.4rem 0.65rem'
+              color: '#8A99AB',
+              padding: '0.5rem 0.75rem'
             }}>
               Navigation
             </div>
 
-            <nav style={{ display: 'grid', gap: '3px' }}>
+            <nav style={{ display: 'grid', gap: '4px' }}>
               {navItems.map((item, idx) => {
                 const isActive = activeItem === idx;
                 return (
@@ -248,11 +207,11 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      padding: '0.65rem 0.85rem',
+                      padding: '0.75rem 0.95rem',
                       borderRadius: '6px',
-                      color: isActive ? '#FFFFFF' : '#B2BFCF',
-                      fontSize: '0.875rem',
-                      fontWeight: isActive ? 600 : 500,
+                      color: isActive ? '#FFFFFF' : '#B8C5D6',
+                      fontSize: '0.9375rem', /* 15px */
+                      fontWeight: isActive ? 600 : 400,
                       textAlign: 'left',
                       width: '100%',
                       background: isActive ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
@@ -268,12 +227,12 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
                     onMouseLeave={(e) => {
                       if (!isActive) {
                         e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = '#B2BFCF';
+                        e.currentTarget.style.color = '#B8C5D6';
                       }
                     }}
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
-                      <span style={{ color: isActive ? 'var(--coral)' : '#8E9CAE', flexShrink: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', minWidth: 0 }}>
+                      <span style={{ color: isActive ? 'var(--coral)' : '#9AAAC0', flexShrink: 0 }}>
                         {item.icon}
                       </span>
                       <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.label}</span>
@@ -284,16 +243,17 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
                         style={{
                           background: item.badgeBg || 'rgba(255, 255, 255, 0.1)',
                           color: item.badgeColor || 'var(--cream-text)',
-                          fontSize: '0.65rem',
-                          padding: '0.12rem 0.45rem',
+                          fontSize: '0.72rem',
+                          padding: '0.15rem 0.5rem',
                           borderRadius: '4px',
-                          flexShrink: 0
+                          flexShrink: 0,
+                          fontWeight: 500
                         }}
                       >
                         {item.badge}
                       </span>
                     ) : isActive ? (
-                      <ChevronRight size={14} color="var(--coral)" style={{ flexShrink: 0 }} />
+                      <ChevronRight size={15} color="var(--coral)" style={{ flexShrink: 0 }} />
                     ) : null}
                   </button>
                 );
@@ -303,23 +263,23 @@ export default function Sidebar({ user, onLogout, onChangeRole, isOpen, onClose 
 
           {/* Sidebar Footer info card */}
           <div style={{
-            padding: '0.85rem',
+            padding: '1rem',
             borderTop: '1px solid rgba(244, 237, 224, 0.12)',
             background: 'rgba(0, 0, 0, 0.08)'
           }}>
             <div style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(244, 237, 224, 0.12)',
+              background: 'rgba(255, 255, 255, 0.04)',
+              border: '1px solid rgba(244, 237, 224, 0.1)',
               borderRadius: '6px',
-              padding: '0.75rem',
-              fontSize: '0.75rem',
-              color: '#B2BFCF'
+              padding: '0.85rem 1rem',
+              fontSize: '0.8rem',
+              color: '#B8C5D6'
             }}>
-              <div style={{ fontWeight: 600, color: 'var(--cream-text)', marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <PhoneCall size={12} color="var(--cream-text)" /> Clinic Emergency Desk
+              <div style={{ fontWeight: 600, color: 'var(--cream-text)', marginBottom: '3px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <PhoneCall size={13} color="var(--cream-text)" /> Clinic Emergency Desk
               </div>
-              <div>OPD Mon–Sat: 09:00 - 18:00</div>
-              <div style={{ color: '#F87171', fontWeight: 600, marginTop: '2px' }}>
+              <div style={{ fontSize: '0.8rem', color: '#9AAAC0' }}>OPD Mon–Sat: 09:00 - 18:00</div>
+              <div style={{ color: '#F87171', fontWeight: 500, marginTop: '3px', fontSize: '0.8rem' }}>
                 Red Flag Triage: Active 24/7
               </div>
             </div>

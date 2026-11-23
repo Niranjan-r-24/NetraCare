@@ -389,17 +389,17 @@ export default function PatientPortal({ user }) {
         </div>
       </div>
 
-      {/* 2. Key Selling Points Strip */}
+      {/* 2. Key Selling Points Strip - De-boxed, spacious & elegant */}
       <div className="ref-strip-grid">
         <div className="ref-strip-card">
           <div className="ref-icon-badge">
-            <Eye size={20} />
+            <Eye size={22} />
           </div>
           <div>
-            <div style={{ fontWeight: 600, color: 'var(--navy)', fontSize: '0.92rem' }}>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--navy)', fontSize: '1.05rem' }}>
               Advanced Diagnostics
             </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
               Slit-lamp & topography precision
             </div>
           </div>
@@ -407,13 +407,13 @@ export default function PatientPortal({ user }) {
 
         <div className="ref-strip-card">
           <div className="ref-icon-badge">
-            <Stethoscope size={20} />
+            <Stethoscope size={22} />
           </div>
           <div>
-            <div style={{ fontWeight: 600, color: 'var(--navy)', fontSize: '0.92rem' }}>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--navy)', fontSize: '1.05rem' }}>
               Expert Ophthalmologists
             </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
               6 surgical sub-specialities
             </div>
           </div>
@@ -421,13 +421,13 @@ export default function PatientPortal({ user }) {
 
         <div className="ref-strip-card">
           <div className="ref-icon-badge">
-            <ShieldAlert size={20} />
+            <ShieldAlert size={22} />
           </div>
           <div>
-            <div style={{ fontWeight: 600, color: 'var(--navy)', fontSize: '0.92rem' }}>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--navy)', fontSize: '1.05rem' }}>
               Red-Flag Safety Triage
             </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
               Immediate emergency screening
             </div>
           </div>
@@ -435,21 +435,21 @@ export default function PatientPortal({ user }) {
 
         <div className="ref-strip-card">
           <div className="ref-icon-badge">
-            <Clock size={20} />
+            <Clock size={22} />
           </div>
           <div>
-            <div style={{ fontWeight: 600, color: 'var(--navy)', fontSize: '0.92rem' }}>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--navy)', fontSize: '1.05rem' }}>
               Governed OPD Slots
             </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
               10m & 20m instant OPD bookings
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3. Specialized Services Grid (Matching Reference Services Grid) */}
-      <div id="section-services" style={{ display: 'grid', gap: '1.25rem' }}>
+      {/* 3. Specialized Services Grid */}
+      <div id="section-services" style={{ display: 'grid', gap: '1.5rem', marginTop: '0.5rem' }}>
         <div>
           <div className="ref-eyebrow">
             <Activity size={14} /> Our Care Specialities
@@ -471,22 +471,22 @@ export default function PatientPortal({ user }) {
               title={`Click to book consultation for ${spec}`}
             >
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <div className="ref-icon-badge">
-                    {spec === 'Cataract' && <Eye size={18} />}
-                    {spec === 'Cornea' && <Sparkles size={18} />}
-                    {spec === 'Glaucoma' && <Activity size={18} />}
-                    {spec === 'Retina' && <Stethoscope size={18} />}
-                    {spec === 'Pediatric' && <User size={18} />}
-                    {spec === 'Refractive' && <CheckCircle2 size={18} />}
+                    {spec === 'Cataract' && <Eye size={20} />}
+                    {spec === 'Cornea' && <Sparkles size={20} />}
+                    {spec === 'Glaucoma' && <Activity size={20} />}
+                    {spec === 'Retina' && <Stethoscope size={20} />}
+                    {spec === 'Pediatric' && <User size={20} />}
+                    {spec === 'Refractive' && <CheckCircle2 size={20} />}
                   </div>
                   <span className="badge badge-primary">Active Clinic</span>
                 </div>
 
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--navy)', margin: '0 0 0.35rem 0' }}>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--navy)', margin: '0 0 0.45rem 0' }}>
                   {spec} {spec !== 'Cataract' && spec !== 'Glaucoma' && spec !== 'Retina' && spec !== 'Pediatric' ? 'Care' : 'Clinic'}
                 </h3>
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.5, margin: 0 }}>
+                <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0 }}>
                   {specialityDescriptions[spec] || 'Specialized diagnostic consultations, imaging, and personalized clinical treatment plans.'}
                 </p>
               </div>
@@ -495,14 +495,14 @@ export default function PatientPortal({ user }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                borderTop: '1px solid var(--border)',
-                paddingTop: '0.75rem',
-                marginTop: '0.5rem'
+                borderTop: '1px solid var(--border-light)',
+                paddingTop: '0.85rem',
+                marginTop: '0.75rem'
               }}>
-                <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--navy)' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--navy)' }}>
                   Schedule for {spec}
                 </span>
-                <ChevronRight size={15} color="var(--navy)" />
+                <ChevronRight size={16} color="var(--navy)" />
               </div>
             </div>
           ))}
@@ -510,7 +510,7 @@ export default function PatientPortal({ user }) {
       </div>
 
       {/* 4. Meet Our Specialist Ophthalmologists */}
-      <div id="section-doctors" style={{ display: 'grid', gap: '1.25rem' }}>
+      <div id="section-doctors" style={{ display: 'grid', gap: '1.5rem', marginTop: '0.5rem' }}>
         <div>
           <div className="ref-eyebrow">
             <Stethoscope size={14} /> Clinical Excellence
@@ -530,36 +530,36 @@ export default function PatientPortal({ user }) {
             return (
               <div key={doc.doctor_id} className="ref-doctor-card">
                 <div style={{
-                  width: '52px',
-                  height: '52px',
+                  width: '56px',
+                  height: '56px',
                   borderRadius: '6px',
                   background: 'var(--navy-light)',
                   border: '1px solid rgba(244, 237, 224, 0.2)',
                   color: 'var(--cream-text)',
-                  fontSize: '1.15rem',
+                  fontSize: '1.25rem',
                   fontWeight: 600,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '0.85rem'
+                  marginBottom: '1rem'
                 }}>
                   {initials}
                 </div>
 
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--navy)', margin: '0 0 0.2rem 0' }}>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy)', margin: '0 0 0.25rem 0' }}>
                   {doc.name}
                 </h3>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500, marginBottom: '0.65rem' }}>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 400, marginBottom: '0.85rem' }}>
                   {meta.title}
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.15rem' }}>
+                <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.25rem' }}>
                   {doc.specialities.map(s => (
-                    <span key={s} className="badge badge-cream" style={{ fontSize: '0.72rem' }}>
+                    <span key={s} className="badge badge-cream" style={{ fontSize: '0.78rem' }}>
                       {s}
                     </span>
                   ))}
-                  <span className="badge badge-neutral" style={{ fontSize: '0.72rem' }}>
+                  <span className="badge badge-neutral" style={{ fontSize: '0.78rem' }}>
                     {meta.exp}
                   </span>
                 </div>
@@ -568,9 +568,9 @@ export default function PatientPortal({ user }) {
                   type="button"
                   onClick={() => scrollToBooking(doc.doctor_id, doc.specialities[0])}
                   className="btn btn-secondary btn-sm"
-                  style={{ width: '100%', borderColor: 'var(--navy)', color: 'var(--navy)', fontWeight: 600, borderRadius: '6px' }}
+                  style={{ width: '100%', borderColor: 'var(--navy)', color: 'var(--navy)', fontWeight: 600, borderRadius: '6px', padding: '0.6rem 1rem' }}
                 >
-                  <Calendar size={14} color="var(--navy)" /> Book Consultation
+                  <Calendar size={15} color="var(--navy)" /> Book Consultation
                 </button>
               </div>
             );
@@ -578,60 +578,61 @@ export default function PatientPortal({ user }) {
         </div>
       </div>
 
-      {/* 5. Clinical Insight of the Day */}
-      <div id="section-fact" className="card" style={{
-        padding: '1.75rem',
+      {/* 5. Clinical Insight of the Day - De-boxed, clean & spacious */}
+      <div id="section-fact" style={{
+        padding: '2rem 2.25rem',
         background: '#ffffff',
         border: '1px solid var(--border)',
-        boxShadow: 'var(--shadow-xs)',
+        borderRadius: 'var(--radius)',
         display: 'grid',
-        gap: '1rem'
+        gap: '1.25rem',
+        marginTop: '0.5rem'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
             <div style={{
               background: 'var(--cream-surface)',
               border: '1px solid var(--border)',
               color: 'var(--navy)',
-              width: '38px',
-              height: '38px',
+              width: '42px',
+              height: '42px',
               borderRadius: '6px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <Sparkles size={18} />
+              <Sparkles size={20} />
             </div>
             <div>
-              <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block' }}>
+              <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block' }}>
                 Ophthalmic Clinical Note
               </span>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--navy)', margin: 0, letterSpacing: '-0.015em' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--navy)', margin: 0, letterSpacing: '-0.015em' }}>
                 Clinical Insight of the Day
               </h3>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
             <button
               type="button"
               onClick={() => loadFact(factOfTheDay)}
               disabled={factLoading}
               className="btn btn-primary btn-sm"
-              style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem', padding: '0.5rem 1rem', borderRadius: '6px' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.86rem', padding: '0.55rem 1.1rem', borderRadius: '6px' }}
               title="Fetch new clinical fact"
             >
-              <RefreshCw size={13} className={factLoading ? 'spin' : ''} />
+              <RefreshCw size={14} className={factLoading ? 'spin' : ''} />
               Next Insight
             </button>
             <button
               type="button"
               onClick={handleCopyInsight}
               className="btn btn-secondary btn-sm"
-              style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem', padding: '0.5rem 0.95rem', borderRadius: '6px' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.86rem', padding: '0.55rem 1rem', borderRadius: '6px' }}
               title="Copy insight text"
             >
-              {copiedInsight ? <Check size={13} color="var(--navy)" /> : <Copy size={13} />}
+              {copiedInsight ? <Check size={14} color="var(--navy)" /> : <Copy size={14} />}
               {copiedInsight ? 'Copied' : 'Copy'}
             </button>
             <button
@@ -642,8 +643,8 @@ export default function PatientPortal({ user }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                fontSize: '0.82rem',
-                padding: '0.5rem 0.95rem',
+                fontSize: '0.86rem',
+                padding: '0.55rem 1rem',
                 background: hasLikedInsight ? 'var(--cream-surface)' : '#ffffff',
                 borderColor: 'var(--border)',
                 color: 'var(--navy)',
@@ -651,7 +652,7 @@ export default function PatientPortal({ user }) {
               }}
               title="Helpful insight"
             >
-              <ThumbsUp size={13} color={hasLikedInsight ? 'var(--navy)' : 'var(--text-muted)'} />
+              <ThumbsUp size={14} color={hasLikedInsight ? 'var(--navy)' : 'var(--text-muted)'} />
               Helpful ({helpfulCount})
             </button>
           </div>
@@ -661,20 +662,21 @@ export default function PatientPortal({ user }) {
         <div style={{
           background: 'var(--cream-surface)',
           borderRadius: '6px',
-          padding: '1.25rem 1.5rem',
-          border: '1px solid var(--border)'
+          padding: '1.5rem 1.75rem',
+          borderLeft: '4px solid var(--navy)'
         }}>
           <p style={{
-            fontSize: '1.1rem',
+            fontFamily: 'var(--font-heading)',
+            fontSize: '1.2rem',
             color: 'var(--navy)',
             fontWeight: 600,
-            lineHeight: 1.5,
-            margin: '0 0 0.4rem 0'
+            lineHeight: 1.55,
+            margin: '0 0 0.5rem 0'
           }}>
             "{factLoading ? 'Consulting ophthalmology clinical knowledge base...' : (factOfTheDay || 'The human eye can distinguish approximately 10 million different colors.')}"
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--coral)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--coral)' }} />
             <span>{factCaveat}</span>
           </div>
         </div>
@@ -689,16 +691,16 @@ export default function PatientPortal({ user }) {
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              padding: '0.45rem 0.85rem',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              padding: '0.5rem 0.95rem',
               borderRadius: '6px'
             }}
           >
-            <Stethoscope size={13} color="var(--navy)" />
+            <Stethoscope size={14} color="var(--navy)" />
             {showDoctorTip ? 'Hide Specialist Protocol' : 'Show Specialist Practical Protocol (20-20-20 Rule)'}
           </button>
-          <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
+          <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
             Reviewed by NetraCare Clinical Quality Board
           </span>
         </div>
@@ -707,15 +709,15 @@ export default function PatientPortal({ user }) {
           <div style={{
             background: 'var(--cream-surface)',
             borderRadius: '6px',
-            padding: '1.15rem 1.35rem',
+            padding: '1.25rem 1.5rem',
             border: '1px solid var(--border)',
             display: 'grid',
-            gap: '0.45rem'
+            gap: '0.5rem'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--navy)', fontWeight: 600, fontSize: '0.88rem' }}>
-              <Eye size={15} color="var(--navy)" /> Specialist Daily Eye Care Protocol:
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--navy)', fontWeight: 600, fontSize: '0.95rem' }}>
+              <Eye size={16} color="var(--navy)" /> Specialist Daily Eye Care Protocol:
             </div>
-            <p style={{ fontSize: '0.86rem', color: 'var(--text-body)', margin: 0, lineHeight: 1.6 }}>
+            <p style={{ fontSize: '0.92rem', color: 'var(--text-body)', margin: 0, lineHeight: 1.65 }}>
               • <b>Digital Screen Strain (20-20-20 Rule):</b> Every 20 minutes of screen exposure, shift your gaze to an object 20 feet away for at least 20 seconds to relax your ciliary accommodation muscles.<br />
               • <b>Blinking & Lubrication:</b> We blink 66% less frequently while staring at screens. Deliberately blink fully to replenish the tear film lipid layer.<br />
               • <b>UV Protection:</b> Always wear 100% UV400-rated sunglasses outdoors to prevent premature lens cataract formation and corneal photokeratitis.
@@ -1061,33 +1063,33 @@ export default function PatientPortal({ user }) {
         </div>
 
         {/* Right Column: Schedule an Appointment Form */}
-        <div id="section-booking" className="card">
+        <div id="section-booking" className="card" style={{ padding: '2rem 2.25rem' }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginBottom: '1.15rem',
+            marginBottom: '1.25rem',
             borderBottom: '1px solid var(--border-light)',
-            paddingBottom: '0.75rem'
+            paddingBottom: '0.85rem'
           }}>
             <div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--navy)' }}>
-                <Clock size={18} color="var(--navy)" /> Schedule Consultation
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.65rem', color: 'var(--navy)' }}>
+                <Clock size={20} color="var(--navy)" /> Schedule Consultation
               </h3>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                 OPD appointment booking engine
               </span>
             </div>
-            <span className="badge badge-primary" style={{ fontSize: '0.72rem' }}>
+            <span className="badge badge-primary">
               Live Engine
             </span>
           </div>
 
-          <div style={{ display: 'grid', gap: '1.15rem' }}>
+          <div style={{ display: 'grid', gap: '1.25rem' }}>
             
             {/* Step 1: Speciality */}
             <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.4rem' }}>
+              <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: 'var(--navy)', marginBottom: '0.45rem' }}>
                 1. Select Eye Speciality
               </label>
               <select
@@ -1095,12 +1097,13 @@ export default function PatientPortal({ user }) {
                 onChange={(e) => setSelectedSpeciality(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '0.65rem 0.85rem',
+                  padding: '0.75rem 1rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border)',
                   background: '#fff',
                   outline: 'none',
-                  fontWeight: 500,
+                  fontWeight: 400,
+                  fontSize: '15px',
                   color: 'var(--navy)'
                 }}
               >
@@ -1112,7 +1115,7 @@ export default function PatientPortal({ user }) {
 
             {/* Step 2: Doctor */}
             <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.4rem' }}>
+              <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: 'var(--navy)', marginBottom: '0.45rem' }}>
                 2. Select Ophthalmologist
               </label>
               <select
@@ -1120,12 +1123,13 @@ export default function PatientPortal({ user }) {
                 onChange={(e) => setSelectedDoctorId(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '0.65rem 0.85rem',
+                  padding: '0.75rem 1rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border)',
                   background: '#fff',
                   outline: 'none',
-                  fontWeight: 500,
+                  fontWeight: 400,
+                  fontSize: '15px',
                   color: 'var(--navy)'
                 }}
               >
@@ -1138,20 +1142,20 @@ export default function PatientPortal({ user }) {
             </div>
 
             {/* Step 3: Visit Type & Date */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.4rem' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: 'var(--navy)', marginBottom: '0.45rem' }}>
                   3. Visit Type
                 </label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', background: 'var(--cream-surface)', padding: '3px', borderRadius: '6px', border: '1px solid var(--border)' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', background: 'var(--cream-surface)', padding: '4px', borderRadius: '6px', border: '1px solid var(--border)' }}>
                   <button
                     type="button"
                     onClick={() => setVisitType('new')}
                     style={{
-                      padding: '0.5rem 0.35rem',
+                      padding: '0.6rem 0.45rem',
                       borderRadius: '4px',
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
+                      fontSize: '14px',
+                      fontWeight: visitType === 'new' ? 600 : 500,
                       background: visitType === 'new' ? 'var(--navy)' : 'transparent',
                       color: visitType === 'new' ? 'var(--cream-text)' : 'var(--text-muted)'
                     }}
@@ -1162,10 +1166,10 @@ export default function PatientPortal({ user }) {
                     type="button"
                     onClick={() => setVisitType('follow_up')}
                     style={{
-                      padding: '0.5rem 0.35rem',
+                      padding: '0.6rem 0.45rem',
                       borderRadius: '4px',
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
+                      fontSize: '14px',
+                      fontWeight: visitType === 'follow_up' ? 600 : 500,
                       background: visitType === 'follow_up' ? 'var(--navy)' : 'transparent',
                       color: visitType === 'follow_up' ? 'var(--cream-text)' : 'var(--text-muted)'
                     }}
@@ -1176,7 +1180,7 @@ export default function PatientPortal({ user }) {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.4rem' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: 'var(--navy)', marginBottom: '0.45rem' }}>
                   4. Consultation Date
                 </label>
                 <input
@@ -1185,11 +1189,12 @@ export default function PatientPortal({ user }) {
                   onChange={(e) => setSelectedDate(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '0.6rem 0.8rem',
+                    padding: '0.72rem 0.95rem',
                     borderRadius: '6px',
                     border: '1px solid var(--border)',
                     outline: 'none',
-                    fontWeight: 500,
+                    fontWeight: 400,
+                    fontSize: '15px',
                     color: 'var(--navy)',
                     background: '#ffffff'
                   }}
@@ -1199,35 +1204,35 @@ export default function PatientPortal({ user }) {
 
             {/* Step 4: Available Free Slots */}
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
+                <label style={{ fontSize: '14px', fontWeight: 500, color: 'var(--navy)' }}>
                   5. Choose Slot
                 </label>
                 {availableSlots.length > 0 && (
-                  <span style={{ fontSize: '0.78rem', color: 'var(--navy)', fontWeight: 600 }}>
+                  <span style={{ fontSize: '13.5px', color: 'var(--navy)', fontWeight: 500 }}>
                     {availableSlots.length} available slots
                   </span>
                 )}
               </div>
 
               {slotsLoading ? (
-                <div style={{ padding: '1.25rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                <div style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '14.5px' }}>
                   <span className="spin">⏳</span> Checking doctor OPD schedule and available slots...
                 </div>
               ) : availableSlots.length === 0 ? (
                 <div style={{
-                  padding: '1.25rem',
+                  padding: '1.5rem',
                   background: 'var(--cream-surface)',
                   borderRadius: '6px',
                   color: 'var(--text-muted)',
-                  fontSize: '0.85rem',
+                  fontSize: '14px',
                   textAlign: 'center',
                   border: '1px dashed var(--border)'
                 }}>
                   No bookable slots on this date (check surgery sessions, doctor days off, holidays, or clinic Sunday closure).
                 </div>
               ) : (
-                <div className="slot-grid" style={{ maxHeight: '180px', overflowY: 'auto', paddingRight: '4px' }}>
+                <div className="slot-grid" style={{ maxHeight: '200px', overflowY: 'auto', paddingRight: '4px' }}>
                   {availableSlots.map(timeStr => (
                     <button
                       key={timeStr}
@@ -1244,11 +1249,11 @@ export default function PatientPortal({ user }) {
 
             {/* Step 5: Reason for Visit (R3) */}
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
+                <label style={{ fontSize: '14px', fontWeight: 500, color: 'var(--navy)' }}>
                   6. Reason for Visit <span style={{ color: 'var(--danger)' }}>*</span>
                 </label>
-                <span style={{ fontSize: '0.75rem', color: visitReason.length > 300 ? 'var(--danger)' : 'var(--text-muted)', fontWeight: 500 }}>
+                <span style={{ fontSize: '13px', color: visitReason.length > 300 ? 'var(--danger)' : 'var(--text-muted)', fontWeight: 400 }}>
                   {visitReason.length}/300
                 </span>
               </div>
@@ -1260,13 +1265,13 @@ export default function PatientPortal({ user }) {
                 maxLength={300}
                 style={{
                   width: '100%',
-                  padding: '0.75rem 0.9rem',
+                  padding: '0.85rem 1rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border)',
                   outline: 'none',
                   resize: 'vertical',
-                  fontSize: '0.9rem',
-                  lineHeight: 1.5,
+                  fontSize: '15px',
+                  lineHeight: 1.6,
                   color: 'var(--navy)'
                 }}
               />
@@ -1279,14 +1284,14 @@ export default function PatientPortal({ user }) {
               style={{
                 marginTop: '0.5rem',
                 width: '100%',
-                padding: '0.8rem',
-                fontSize: '0.95rem',
+                padding: '0.85rem 1.5rem',
+                fontSize: '15px',
                 fontWeight: 600,
                 borderRadius: '6px'
               }}
             >
               {actionLoading ? 'Screening Red Flags & Rules...' : `Book Consultation at ${selectedSlot || '...'}`}
-              {!actionLoading && <ArrowRight size={16} />}
+              {!actionLoading && <ArrowRight size={17} />}
             </button>
           </div>
         </div>
@@ -1295,25 +1300,25 @@ export default function PatientPortal({ user }) {
 
       {/* 8. Frequently Asked Questions (FAQ) */}
       <div id="section-faq" className="card" style={{
-        padding: '2rem 1.75rem',
+        padding: '2.5rem 2.5rem',
         background: '#ffffff',
         border: '1px solid var(--border)',
         boxShadow: 'var(--shadow-xs)',
         marginTop: '0.5rem'
       }}>
-        <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-          <div className="ref-eyebrow" style={{ justifyContent: 'center', marginBottom: '0.45rem' }}>
-            <HelpCircle size={14} /> Patient Help Center & Clinic FAQs
+        <div style={{ marginBottom: '1.75rem', textAlign: 'center' }}>
+          <div className="ref-eyebrow" style={{ justifyContent: 'center', marginBottom: '0.5rem' }}>
+            <HelpCircle size={15} /> Patient Help Center & Clinic FAQs
           </div>
-          <h2 className="ref-section-title" style={{ fontSize: '1.5rem', color: 'var(--navy)', marginBottom: '0.35rem' }}>
+          <h2 className="ref-section-title" style={{ fontSize: '24px', color: 'var(--navy)', marginBottom: '0.5rem' }}>
             Frequently Asked Questions
           </h2>
-          <p className="ref-section-sub" style={{ maxWidth: '640px', margin: '0 auto' }}>
+          <p className="ref-section-sub" style={{ maxWidth: '680px', margin: '0 auto', fontSize: '15px' }}>
             Information regarding ophthalmic consultations, LASIK suitability screening, the 2-hour cancellation rule, and emergency protocols.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gap: '0.65rem', maxWidth: '920px', margin: '0 auto' }}>
+        <div style={{ display: 'grid', gap: '0.75rem', maxWidth: '920px', margin: '0 auto' }}>
           {faqItems.map((faq, idx) => {
             const isOpen = openFaq === idx;
             return (
@@ -1334,7 +1339,7 @@ export default function PatientPortal({ user }) {
                   style={{
                     width: '100%',
                     textAlign: 'left',
-                    padding: '1rem 1.25rem',
+                    padding: '1.15rem 1.45rem',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
@@ -1343,47 +1348,31 @@ export default function PatientPortal({ user }) {
                     border: 'none',
                     cursor: 'pointer',
                     fontWeight: 600,
-                    fontSize: '0.92rem',
-                    color: isOpen ? 'var(--navy)' : 'var(--text-body)'
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '16px',
+                    color: isOpen ? 'var(--navy)' : 'var(--navy)'
                   }}
                 >
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span style={{
-                      width: '24px',
-                      height: '24px',
-                      borderRadius: '4px',
-                      background: isOpen ? 'var(--navy)' : 'var(--cream-alt)',
-                      color: isOpen ? 'var(--cream-text)' : 'var(--navy)',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      {idx + 1}
-                    </span>
-                    {faq.q}
-                  </span>
+                  <span>{faq.q}</span>
                   <ChevronDown
                     size={17}
                     style={{
                       transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                       transition: 'transform 0.2s ease',
-                      color: isOpen ? 'var(--navy)' : 'var(--text-muted)',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      color: 'var(--navy)'
                     }}
                   />
                 </button>
 
                 {isOpen && (
                   <div style={{
-                    padding: '0 1.25rem 1.15rem 3.25rem',
+                    padding: '0 1.45rem 1.25rem 1.45rem',
+                    fontSize: '15px',
+                    lineHeight: 1.65,
                     color: 'var(--text-body)',
-                    fontSize: '0.88rem',
-                    lineHeight: 1.6,
-                    borderTop: '1px dashed var(--border)',
-                    paddingTop: '0.75rem'
+                    borderTop: '1px solid var(--cream-border)',
+                    paddingTop: '0.95rem'
                   }}>
                     {faq.a}
                   </div>

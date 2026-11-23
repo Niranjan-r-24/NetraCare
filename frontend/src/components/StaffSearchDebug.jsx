@@ -94,10 +94,10 @@ export default function StaffSearchDebug() {
           <Sliders size={20} />
         </div>
         <div>
-          <h3 style={{ fontSize: '1.15rem', fontWeight: '600', margin: 0, color: 'var(--navy)' }}>
+          <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 600, margin: 0, color: 'var(--navy)' }}>
             Staff Knowledge-Base Search Debugger
           </h3>
-          <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+          <span style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
             Compare keyword (BM25), vector (Chroma), and equal-weight hybrid rankings across clinic documentation
           </span>
         </div>
@@ -112,10 +112,10 @@ export default function StaffSearchDebug() {
           style={{
             flex: 1,
             minWidth: '280px',
-            padding: '0.7rem 0.95rem',
+            padding: '0.75rem 1rem',
             borderRadius: '6px',
             border: '1px solid var(--border)',
-            fontSize: '0.9rem',
+            fontSize: '15px',
             outline: 'none'
           }}
         />
@@ -123,20 +123,20 @@ export default function StaffSearchDebug() {
           type="submit"
           disabled={!query.trim() || loading}
           className="btn btn-primary"
-          style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0.7rem 1.35rem', borderRadius: '6px' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0.75rem 1.45rem', borderRadius: '6px', fontSize: '14.5px' }}
         >
-          <Search size={15} /> {loading ? 'Querying...' : 'Search Debug'}
+          <Search size={16} /> {loading ? 'Querying...' : 'Search Debug'}
         </button>
       </form>
 
       {/* Suggested queries */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexWrap: 'wrap' }}>
-        <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '600' }}>Quick probes:</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+        <span style={{ fontSize: '13.5px', color: '#64748b', fontWeight: 500 }}>Quick probes:</span>
         <button
           type="button"
           onClick={() => handleQuickQuery('Should I bring my HbA1c report?')}
           className="btn btn-secondary btn-sm"
-          style={{ fontSize: '0.75rem', padding: '0.3rem 0.85rem', borderRadius: '6px' }}
+          style={{ fontSize: '13.5px', padding: '0.4rem 0.95rem', borderRadius: '6px' }}
         >
           HbA1c report requirement
         </button>
@@ -144,7 +144,7 @@ export default function StaffSearchDebug() {
           type="button"
           onClick={() => handleQuickQuery('Can my kid have breakfast before squint surgery?')}
           className="btn btn-secondary btn-sm"
-          style={{ fontSize: '0.75rem', padding: '0.3rem 0.85rem', borderRadius: '6px' }}
+          style={{ fontSize: '13.5px', padding: '0.4rem 0.95rem', borderRadius: '6px' }}
         >
           Fasting before surgery
         </button>
@@ -152,7 +152,7 @@ export default function StaffSearchDebug() {
           type="button"
           onClick={() => handleQuickQuery('LASIK refractive screening suitability')}
           className="btn btn-secondary btn-sm"
-          style={{ fontSize: '0.75rem', padding: '0.3rem 0.85rem', borderRadius: '6px' }}
+          style={{ fontSize: '13.5px', padding: '0.4rem 0.95rem', borderRadius: '6px' }}
         >
           LASIK suitability
         </button>

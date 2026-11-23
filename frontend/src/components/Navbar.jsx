@@ -9,10 +9,7 @@ import {
   Calendar,
   Sparkles,
   Menu,
-  X,
-  Search,
-  Bell,
-  Download
+  X
 } from 'lucide-react';
 
 export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, isSidebarOpen }) {
@@ -20,20 +17,20 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
     switch (role) {
       case 'patient':
         return (
-          <span className="badge" style={{ background: 'rgba(255, 255, 255, 0.12)', color: 'var(--cream-text)', border: '1px solid rgba(244, 237, 224, 0.2)', padding: '0.15rem 0.5rem', borderRadius: '4px', fontSize: '0.7rem' }}>
-            <User size={11} /> Patient
+          <span className="badge" style={{ background: 'rgba(255, 255, 255, 0.12)', color: 'var(--cream-text)', border: '1px solid rgba(244, 237, 224, 0.2)', padding: '0.15rem 0.55rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 500 }}>
+            <User size={12} /> Patient
           </span>
         );
       case 'doctor':
         return (
-          <span className="badge" style={{ background: 'rgba(244, 237, 224, 0.15)', color: 'var(--cream-text)', border: '1px solid rgba(244, 237, 224, 0.25)', padding: '0.15rem 0.5rem', borderRadius: '4px', fontSize: '0.7rem' }}>
-            <Stethoscope size={11} /> Doctor
+          <span className="badge" style={{ background: 'rgba(244, 237, 224, 0.15)', color: 'var(--cream-text)', border: '1px solid rgba(244, 237, 224, 0.25)', padding: '0.15rem 0.55rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 500 }}>
+            <Stethoscope size={12} /> Doctor
           </span>
         );
       case 'staff':
         return (
-          <span className="badge badge-warning" style={{ padding: '0.15rem 0.5rem', borderRadius: '4px', fontSize: '0.7rem' }}>
-            <ShieldCheck size={11} /> Staff
+          <span className="badge badge-warning" style={{ padding: '0.15rem 0.55rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 500 }}>
+            <ShieldCheck size={12} /> Staff
           </span>
         );
       default:
@@ -46,12 +43,6 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
     return name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
   };
 
-  const todayFormatted = new Date().toLocaleDateString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric'
-  });
-
   return (
     <header style={{
       background: 'var(--navy)',
@@ -59,22 +50,22 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
       position: 'sticky',
       top: 0,
       zIndex: 50,
-      padding: '0.75rem 1.5rem',
+      padding: '0.9rem 2rem',
       width: '100%',
       boxSizing: 'border-box',
-      boxShadow: '0 2px 12px -2px rgba(20, 33, 61, 0.35)'
+      boxShadow: '0 2px 8px rgba(20, 33, 61, 0.15)'
     }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        gap: '0.75rem',
+        gap: '1.5rem',
         width: '100%',
         maxWidth: '100%'
       }}>
         
         {/* Left: Hamburger Toggle & Brand Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexShrink: 0 }}>
           {user && onToggleSidebar && (
             <button
               onClick={onToggleSidebar}
@@ -93,25 +84,26 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
             </button>
           )}
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{
               background: 'var(--navy-light)',
               color: 'var(--coral)',
               border: '1px solid rgba(244, 237, 224, 0.15)',
-              width: '38px',
-              height: '38px',
+              width: '40px',
+              height: '40px',
               borderRadius: '6px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0
             }}>
-              <Eye size={20} />
+              <Eye size={22} />
             </div>
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <h1 style={{
-                  fontSize: '1.2rem',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.35rem',
                   fontWeight: 700,
                   color: 'var(--cream-text)',
                   letterSpacing: '-0.02em',
@@ -123,136 +115,39 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
                 <span className="badge" style={{
                   background: 'rgba(255, 255, 255, 0.1)',
                   color: 'var(--cream-text)',
-                  fontSize: '0.65rem',
+                  fontSize: '0.7rem',
                   border: '1px solid rgba(244, 237, 224, 0.2)',
                   padding: '0.1rem 0.45rem',
-                  borderRadius: '4px'
+                  borderRadius: '4px',
+                  fontWeight: 500
                 }}>
-                  EHR 2.0
+                  Clinical EHR
                 </span>
               </div>
-              <span className="navbar-subtitle" style={{ fontSize: '0.72rem', color: '#A0ADC0', fontWeight: 500, display: 'block' }}>
+              <span className="navbar-subtitle" style={{ fontSize: '0.78rem', color: '#A0ADC0', fontWeight: 400, display: 'block', marginTop: '2px' }}>
                 Specialized Eye Care & Clinical Operations
               </span>
             </div>
           </div>
         </div>
 
-        {/* Center: Search input & Live OPD Badge */}
-        <div style={{
-          display: 'none',
-          alignItems: 'center',
-          gap: '0.65rem',
-          minWidth: 0
-        }} className="desktop-navbar-center">
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            background: 'rgba(255, 255, 255, 0.08)',
-            border: '1px solid rgba(244, 237, 224, 0.18)',
-            borderRadius: '6px',
-            padding: '0.4rem 0.85rem',
-            fontSize: '0.82rem',
-            color: 'var(--cream-text)',
-            width: '230px'
-          }}>
-            <Search size={14} color="#A0ADC0" />
-            <input
-              type="text"
-              placeholder="Search patients, doctors..."
-              style={{
-                border: 'none',
-                background: 'transparent',
-                outline: 'none',
-                width: '100%',
-                fontSize: '0.82rem',
-                color: 'var(--cream-text)'
-              }}
-            />
-          </div>
-
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.45rem',
-            background: 'rgba(255, 255, 255, 0.08)',
-            border: '1px solid rgba(244, 237, 224, 0.18)',
-            borderRadius: '6px',
-            padding: '0.35rem 0.75rem',
-            fontSize: '0.76rem',
-            color: 'var(--cream-text)',
-            fontWeight: 500,
-            whiteSpace: 'nowrap'
-          }}>
-            <span style={{
-              width: '6px',
-              height: '6px',
-              borderRadius: '50%',
-              background: 'var(--coral)'
-            }} className="pulse" />
-            <span>OPD Rule Engine</span>
-            <span style={{ color: 'rgba(244, 237, 224, 0.25)' }}>|</span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--cream-text)' }}>
-              <Calendar size={12} color="var(--cream-text)" /> {todayFormatted}
-            </span>
-          </div>
-        </div>
-
-        {/* Right: Quick Action, User Chip, Switch Role & Logout */}
+        {/* Right: User Profile, Switch Role & Logout */}
         {user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexShrink: 0 }}>
-            
-            {/* Quick Action */}
-            <div style={{ display: 'none', alignItems: 'center', gap: '0.5rem' }} className="desktop-export-btn">
-              <button
-                type="button"
-                className="btn btn-secondary btn-sm"
-                style={{
-                  fontSize: '0.78rem',
-                  padding: '0.45rem 0.85rem',
-                  background: 'rgba(255, 255, 255, 0.08)',
-                  color: 'var(--cream-text)',
-                  borderColor: 'rgba(244, 237, 224, 0.2)',
-                  borderRadius: '6px'
-                }}
-                onClick={() => alert('Exporting clinic schedule summary...')}
-              >
-                <Download size={13} color="var(--cream-text)" /> Export CSV
-              </button>
-            </div>
-
-            {/* Notification bell */}
-            <button
-              type="button"
-              className="btn btn-secondary btn-icon"
-              style={{
-                width: '34px',
-                height: '34px',
-                background: 'rgba(255, 255, 255, 0.08)',
-                borderColor: 'rgba(244, 237, 224, 0.2)',
-                color: 'var(--cream-text)',
-                borderRadius: '6px'
-              }}
-              title="Notifications"
-            >
-              <Bell size={15} color="var(--cream-text)" />
-            </button>
-
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
             {/* User Profile */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.55rem',
-              padding: '0.3rem 0.65rem',
+              gap: '0.65rem',
+              padding: '0.35rem 0.85rem',
               background: 'rgba(255, 255, 255, 0.08)',
               borderRadius: '6px',
               border: '1px solid rgba(244, 237, 224, 0.18)',
-              maxWidth: '220px'
+              maxWidth: '240px'
             }}>
               <div style={{
-                width: '28px',
-                height: '28px',
+                width: '30px',
+                height: '30px',
                 borderRadius: '4px',
                 background: user.role === 'doctor'
                   ? 'var(--navy-light)'
@@ -261,7 +156,7 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
                   : 'var(--navy-light)',
                 color: '#ffffff',
                 fontWeight: 600,
-                fontSize: '0.75rem',
+                fontSize: '0.8rem',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -271,10 +166,10 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
               </div>
               <div style={{ textAlign: 'left', minWidth: 0, overflow: 'hidden' }}>
                 <div style={{
-                  fontSize: '0.82rem',
+                  fontSize: '0.85rem',
                   fontWeight: 600,
                   color: 'var(--cream-text)',
-                  lineHeight: 1.15,
+                  lineHeight: 1.2,
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis'
@@ -294,16 +189,17 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '5px',
-                fontSize: '0.78rem',
-                padding: '0.45rem 0.85rem',
+                gap: '6px',
+                fontSize: '0.82rem',
+                padding: '0.5rem 0.95rem',
                 background: 'rgba(255, 255, 255, 0.08)',
                 color: 'var(--cream-text)',
                 borderColor: 'rgba(244, 237, 224, 0.2)',
-                borderRadius: '6px'
+                borderRadius: '6px',
+                fontWeight: 500
               }}
             >
-              <RefreshCw size={12} color="var(--cream-text)" />
+              <RefreshCw size={13} color="var(--cream-text)" />
               <span className="btn-label-desktop">Switch Role</span>
             </button>
 
@@ -311,9 +207,9 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
               onClick={onLogout}
               className="btn btn-danger btn-sm"
               title="Sign Out"
-              style={{ padding: '0.45rem 0.75rem', borderRadius: '6px' }}
+              style={{ padding: '0.5rem 0.85rem', borderRadius: '6px', fontSize: '0.82rem', fontWeight: 500 }}
             >
-              <LogOut size={13} />
+              <LogOut size={14} />
             </button>
           </div>
         ) : (
@@ -322,9 +218,10 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
               background: 'rgba(255, 255, 255, 0.12)',
               color: 'var(--cream-text)',
               border: '1px solid rgba(244, 237, 224, 0.2)',
-              padding: '0.3rem 0.75rem',
+              padding: '0.35rem 0.85rem',
               borderRadius: '4px',
-              fontWeight: 600
+              fontWeight: 500,
+              fontSize: '0.82rem'
             }}>
               Ophthalmology Suite
             </span>
@@ -333,14 +230,6 @@ export default function Navbar({ user, onLogout, onChangeRole, onToggleSidebar, 
       </div>
 
       <style>{`
-        @media (min-width: 1200px) {
-          .desktop-navbar-center {
-            display: flex !important;
-          }
-          .desktop-export-btn {
-            display: flex !important;
-          }
-        }
         @media (max-width: 768px) {
           .navbar-subtitle {
             display: none !important;

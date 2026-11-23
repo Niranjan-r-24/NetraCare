@@ -182,33 +182,37 @@ export default function DoctorDashboard({ user }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '1.25rem'
+        gap: '1.5rem'
       }}>
         <div>
           <h2 style={{
-            fontSize: '1.85rem',
-            fontWeight: '800',
+            fontFamily: 'var(--font-heading)',
+            fontSize: '30px',
+            fontWeight: 700,
             color: 'var(--navy)',
-            letterSpacing: '-0.03em'
+            letterSpacing: '-0.025em',
+            margin: 0
           }}>
             Welcome back, {user.name}!
           </h2>
-          <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+          <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginTop: '4px', lineHeight: 1.6 }}>
             Doctor ID: <b>{user.user_id}</b> · Review daily consultations, clinical intake notes, and AI chart summaries
           </p>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
           <button
             type="button"
-            className="btn btn-secondary btn-sm btn-pill"
+            className="btn btn-secondary btn-sm"
+            style={{ borderRadius: '6px', fontSize: '14px', padding: '0.6rem 1.1rem', fontWeight: 500 }}
             onClick={() => alert('Generating daily OPD clinical report...')}
           >
-            <Download size={13} color="var(--coral)" /> Export to CSV
+            <Download size={14} color="var(--navy)" /> Export to CSV
           </button>
           <button
             type="button"
-            className="btn btn-secondary btn-sm btn-pill"
+            className="btn btn-secondary btn-sm"
+            style={{ borderRadius: '6px', fontSize: '14px', padding: '0.6rem 1.1rem', fontWeight: 500 }}
             onClick={() => alert('Generating comprehensive weekly summary...')}
           >
             Generate Report
@@ -219,13 +223,13 @@ export default function DoctorDashboard({ user }) {
             gap: '6px',
             background: 'var(--navy)',
             color: 'var(--cream-text)',
-            padding: '0.45rem 1.15rem',
-            borderRadius: '9999px',
-            fontSize: '0.82rem',
-            fontWeight: '700',
-            boxShadow: '0 4px 12px rgba(20, 33, 61, 0.25)'
+            padding: '0.6rem 1.15rem',
+            borderRadius: '6px',
+            fontSize: '14px',
+            fontWeight: 500,
+            boxShadow: 'var(--shadow-xs)'
           }}>
-            <Calendar size={13} color="var(--coral)" /> Today's Session
+            <Calendar size={14} color="var(--cream-text)" /> Today's Session
           </div>
         </div>
       </div>
@@ -233,52 +237,52 @@ export default function DoctorDashboard({ user }) {
       {msg.text && (
         <div className={`alert alert-${msg.type}`} style={{ borderRadius: 'var(--radius)' }}>
           {msg.type === 'success' ? <CheckCircle2 size={19} /> : <AlertCircle size={19} />}
-          <span style={{ fontWeight: '600' }}>{msg.text}</span>
+          <span style={{ fontWeight: '500' }}>{msg.text}</span>
         </div>
       )}
 
-      {/* 2. Four Stat Metric Cards with Embedded Mini Charts (DIRECTLY REPRODUCES REFERENCE IMAGE 2 & 3) */}
+      {/* 2. Four Stat Metric Cards - Clean SaaS Presentation */}
       <div className="metric-cards-grid">
         
         {/* Metric 1: Total Consultations (with mini SVG wave chart) */}
-        <div className="metric-card" style={{ borderRadius: '22px' }}>
+        <div className="metric-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{
                 background: 'var(--cream-surface)',
                 color: 'var(--navy)',
                 border: '1px solid var(--cream-border)',
-                width: '36px',
-                height: '36px',
-                borderRadius: '10px',
+                width: '38px',
+                height: '38px',
+                borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <Users size={18} />
+                <Users size={19} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: '700' }}>
+              <span style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: 500 }}>
                 Total Patients
               </span>
             </div>
-            <span className="badge badge-neutral" style={{ fontSize: '0.68rem', padding: '2px 8px' }}>
+            <span className="badge badge-neutral" style={{ fontSize: '12px', padding: '2px 8px' }}>
               +24% vs last week
             </span>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.75rem' }}>
             <div>
-              <div style={{ fontSize: '2.2rem', fontWeight: '800', color: 'var(--navy)', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '30px', fontWeight: 700, color: 'var(--navy)', lineHeight: 1 }}>
                 {totalCount}
               </div>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-subtle)', fontWeight: '600' }}>Consultations today</span>
+              <span style={{ fontSize: '13px', color: 'var(--text-subtle)', fontWeight: 400, marginTop: '3px', display: 'block' }}>Consultations today</span>
             </div>
 
             {/* Embedded Mini SVG Wave Sparkline */}
             <svg width="100" height="40" viewBox="0 0 100 40" fill="none">
-              <path d="M0 30 Q25 10 50 25 T100 12" stroke="var(--navy)" strokeWidth="2.5" fill="none" />
-              <path d="M0 30 Q25 10 50 25 T100 12 L100 40 L0 40 Z" fill="rgba(20, 33, 61, 0.08)" />
-              <circle cx="50" cy="25" r="3.5" fill="var(--coral)" stroke="#ffffff" strokeWidth="1.5" />
+              <path d="M0 30 Q25 10 50 25 T100 12" stroke="var(--navy)" strokeWidth="2" fill="none" />
+              <path d="M0 30 Q25 10 50 25 T100 12 L100 40 L0 40 Z" fill="rgba(20, 33, 61, 0.06)" />
+              <circle cx="50" cy="25" r="3" fill="var(--coral)" stroke="#ffffff" strokeWidth="1.5" />
             </svg>
           </div>
         </div>
@@ -286,35 +290,35 @@ export default function DoctorDashboard({ user }) {
         {/* Metric 2: Completed Visits */}
         <div className="metric-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{
                 background: 'var(--cream-surface)',
                 color: 'var(--navy)',
-                width: '36px',
-                height: '36px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 border: '1px solid var(--cream-border)'
               }}>
-                <CheckCircle2 size={18} />
+                <CheckCircle2 size={19} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+              <span style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: 500 }}>
                 Completed Visits
               </span>
             </div>
-            <span className="badge badge-primary" style={{ fontSize: '0.68rem', padding: '2px 8px' }}>
+            <span className="badge badge-primary" style={{ fontSize: '12px', padding: '2px 8px' }}>
               +14% OPD
             </span>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.75rem' }}>
             <div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--navy)', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '28px', fontWeight: 700, color: 'var(--navy)', lineHeight: 1 }}>
                 {completedCount}
               </div>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-subtle)', fontWeight: 500 }}>Notes recorded</span>
+              <span style={{ fontSize: '13px', color: 'var(--text-subtle)', fontWeight: 400, marginTop: '3px', display: 'block' }}>Notes recorded</span>
             </div>
 
             {/* Embedded Mini Bar Chart */}
@@ -331,34 +335,34 @@ export default function DoctorDashboard({ user }) {
         {/* Metric 3: Pending Queue */}
         <div className="metric-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{
                 background: '#fef3c7',
                 color: '#d97706',
-                width: '36px',
-                height: '36px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <Clock size={18} />
+                <Clock size={19} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+              <span style={{ fontSize: '14px', color: '#64748b', fontWeight: 500 }}>
                 Pending Queue
               </span>
             </div>
-            <span className="badge badge-warning" style={{ fontSize: '0.68rem', padding: '2px 8px' }}>
+            <span className="badge badge-warning" style={{ fontSize: '12px', padding: '2px 8px' }}>
               In Progress
             </span>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.75rem' }}>
             <div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 600, color: '#d97706', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '28px', fontWeight: 700, color: '#d97706', lineHeight: 1 }}>
                 {pendingCount}
               </div>
-              <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500 }}>Awaiting consultation</span>
+              <span style={{ fontSize: '13px', color: '#94a3b8', fontWeight: 400, marginTop: '3px', display: 'block' }}>Awaiting consultation</span>
             </div>
 
             {/* Embedded Progress Wave */}
@@ -372,46 +376,46 @@ export default function DoctorDashboard({ user }) {
         {/* Metric 4: Urgent Priority Cases */}
         <div className="metric-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{
                 background: '#fee2e2',
                 color: '#b91c1c',
-                width: '36px',
-                height: '36px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <AlertTriangle size={18} />
+                <AlertTriangle size={19} />
               </div>
-              <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+              <span style={{ fontSize: '14px', color: '#64748b', fontWeight: 500 }}>
                 Urgent Attention
               </span>
             </div>
-            <span className="badge badge-danger" style={{ fontSize: '0.68rem', padding: '2px 8px' }}>
+            <span className="badge badge-danger" style={{ fontSize: '12px', padding: '2px 8px' }}>
               Priority Triage
             </span>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '0.75rem' }}>
             <div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 600, color: '#b91c1c', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '28px', fontWeight: 700, color: '#b91c1c', lineHeight: 1 }}>
                 {urgentCount}
               </div>
-              <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500 }}>Red flag cases</span>
+              <span style={{ fontSize: '13px', color: '#94a3b8', fontWeight: 400, marginTop: '3px', display: 'block' }}>Red flag cases</span>
             </div>
 
             <div style={{
-              width: '36px',
-              height: '36px',
+              width: '38px',
+              height: '38px',
               borderRadius: '6px',
               background: '#fee2e2',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <AlertTriangle size={18} color="#b91c1c" className={urgentCount > 0 ? 'pulse' : ''} />
+              <AlertTriangle size={19} color="#b91c1c" className={urgentCount > 0 ? 'pulse' : ''} />
             </div>
           </div>
         </div>
