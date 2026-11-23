@@ -1,0 +1,19 @@
+case_id,patient_id,todays_reason,must_include,must_not_add,summary,length_ok,unrecorded_facts,missing_must_include,judge_reason,status
+SU01,P01,Six-month diabetic eye review,"Type 2 diabetes and high blood pressure; no known allergies; Dr. Shah: mild NPDR both eyes, unchanged, no macular oedema; Dr. Rao: early cataract with night glare, patient chose to wait","Saying the retina is getting worse, or that surgery is due now","Patient Asha Verma, a 68-year-old with Type 2 diabetes and high blood pressure, presented for a six-month diabetic eye review with no known allergies. 
+
+History shows:
+On 2025-11-17, Dr. Kiran Shah recorded mild non-proliferative diabetic retinopathy both eyes, no macular oedema, VA 6/9 OD and 6/12 OS, and advised strict sugar and BP control. 
+On 2026-05-18, Dr. Kiran Shah recorded mild NPDR both eyes unchanged, no macular oedema on OCT, and VA 6/9 OD and 6/12 OS. 
+On 2026-08-10, Dr. Anand Rao recorded nuclear sclerosis grade 2 OS and grade 1 OD with night glare, discussed cataract surgery OS, which the patient wants to wait on. 
+On 2026-10-12, Dr. Anand Rao recorded no reason or note.",True,[],[],The AI summary accurately captures all the must-include facts without hallucinating any unrecorded facts or committing the specific mistakes watched out for.,PASS
+SU04,P18,Pre-surgery check for cataract surgery,"Heart disease and takes aspirin; Dr. Rao: mature cataract left eye, listed for surgery; Dr. Shah: old branch vein occlusion right eye, inactive, no treatment","Advising to stop aspirin, or giving a surgery date","Harish Chandra, 81-year-old with heart disease on aspirin and no known allergies, presents for a cataract surgery pre-surgery check. 
+
+Historical visits:
+On 2026-10-26, Dr. Anand Rao recorded no reason or note.
+On 2026-09-07, Dr. Anand Rao recorded the patient could not see from the left eye, diagnosed mature cataract OS, and noted VA hand movements OS and 6/12 OD. Dr. Rao recorded poor fundus view, attached retina on B-scan, and listed the patient for cataract surgery OS.
+On 2025-12-08, Dr. Kiran Shah recorded a black spot in the right eye vision for years, diagnosed old inactive branch retinal vein occlusion OD with no macular oedema, and noted no treatment needed with a yearly review.",True,[],[],"The AI summary accurately includes all required must-include facts, does not include any unrecorded facts or hallucinations, and avoids advising to stop aspirin or inventing a surgery date.",PASS
+SU05,P15,Eye pressure review,"Asthma; Dr. Iyer: ocular hypertension, latanoprost started, timolol avoided because of asthma","Calling it glaucoma (the note says ocular hypertension), or suggesting timolol","Sunita Rao is a 51-year-old with a history of asthma and no known allergies presenting for an eye pressure review. 
+
+History of completed visits:
+- On 2026-10-21, Dr. Meera Iyer (Glaucoma) recorded no reason and no note.
+- On 2026-05-06, Dr. Meera Iyer (Glaucoma) recorded the reason as high eye pressure found at an eye camp. Dr. Meera Iyer recorded a diagnosis of ocular hypertension with IOP of 25 OD and 24 OS, noting that fields and OCT were normal. Dr. Meera Iyer started latanoprost at night in both eyes and noted that timolol was avoided because of asthma.",True,[],[],"The AI summary accurately includes all required must-include facts (Asthma; Dr. Iyer: ocular hypertension, latanoprost started, timolol avoided because of asthma) without any unrecorded facts, hallucinations, or misuse of diagnoses.",PASS

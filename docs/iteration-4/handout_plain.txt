@@ -1,0 +1,142 @@
+[H1] A Chat Agent That Books for the Patient
+
+[P] Agents with LangGraph: tools, memory and human-in-the-loop. The patient chat finds free slots and books, cancels and reschedules by calling your clinic API, and Staff stay in control of late changes.
+
+[P] Read with the NetraCare Capstone Brief. NetraCare is a fictional clinic. All data is synthetic.
+
+[H2] Where you are
+
+[P] You have the iteration 3 website: booking with every clinic rule in the backend, the red-flag check, doctor summaries, and a patient chat that answers from clinic documents with sources. You have now learnt agents: tool calling, LangGraph, memory and human-in-the-loop. This iteration turns the chat into an agent. It decides which tools to call, finds free slots, and books, cancels or reschedules after the patient confirms. Your iteration 1 API still decides what is allowed. The agent only chooses and explains.
+
+[H2] Time and how to work
+
+[H3] Use agentic coding, and own the result
+
+[P] Keep working with Claude Code or Cursor. Let the AI write most of the code, and spend your time on the tools, the agent's prompt and the graph. You must be able to explain it in the final demo.
+
+[UL] Understand the high-level flow: draw your graph, and follow one message from the patient to a booking in the database (section 04). Understand the important details: how the LLM picks a tool from its name and description, why the patient's ID never comes from the LLM, where the agent stops and waits for a person, and why a refusal from the API is a normal result, not an error. Read the tool calls. When the agent does something odd, print each tool call and its result, and read them in order. Most problems are a vague tool description or a missing fact in the prompt, such as today's date. Start with a short spec. Give your AI tool this handout and the data pack 4 README, and ask it to plan before it codes.
+
+[H2] What you'll build
+
+[P] Your iteration 3 website, with the chat upgraded to a booking agent, plus the Staff and Doctor screens that keep people in control.
+
+[H3] Patient
+
+[UL] Ask the chat for free times in plain words, such as "Saturday morning, or else the earliest weekday" Book, cancel and reschedule in the chat, after confirming each action on a card Ask "What appointments do I have?" and "Book my follow-up" Still ask about the clinic and get answers with sources See a late cancel or reschedule waiting for Staff
+
+[H3] Staff
+
+[UL] Approve or reject a patient's cancel or reschedule inside 2 hours Approve or reject each rebooking after a doctor's leave optional, R7 See red flags from the chat as urgent cases, as before
+
+[H3] Doctor
+
+[UL] No change in this iteration Mark leave for a morning, an afternoon or a full day optional, R7
+
+[H2] How the agent works
+
+[P] Each patient message runs through a small LangGraph graph. The agent node loops with the tools node until it has an answer, and pauses for the patient before anything changes.
+
+[OL] Red-flag node. Your code runs check_red_flags on the patient's message. A red flag ends here with the emergency response, an urgent case and no tool calls. Agent node. The LLM gets its instructions, today's date and a 30-day calendar, the patient's appointments and past visits, and the conversation. It replies, asks a question, or asks for one or more tools. Tools node. Runs the tools the LLM asked for and returns the results to the agent node. The loop repeats until the agent replies, up to a step limit. Confirm. Before a book, cancel or reschedule reaches the API, the graph pauses and the patient sees a card with Confirm and No. Nothing changes until they confirm. The API decides. The tool calls the same rules check as your website. A refusal comes back with its reason code, and the agent explains it and offers free times instead. Your code finishes the reply. It adds the sources from any document search, as in iteration 3, and shows the card or the answer.
+
+[H3] Who decides what
+
+[TABLE] Decision Made by Which tools to call, which free time to offer, how to explain a refusal The agent (the LLM) Whether a booking, cancel or reschedule is allowed Your API, with the brief's section 04 rules Whether to go ahead with an action The patient, on the confirmation card A patient's cancel or reschedule inside 2 hours, and rebooking after doctor leave if you build R7 Staff Red flags, which patient is acting, the sources and "I don't know" Your code, never the LLM
+
+[H2] Requirements
+
+[H3] Finish the clinic API
+
+[UL] Reschedule (a stretch goal in iteration 1; reuse it if you built it). It is one action: check the new booking as if the old one were already cancelled, then cancel the old one and book the new one together. If the new booking is refused, the original stays exactly as it was. Staff approvals. A patient's cancel or reschedule inside 2 hours no longer just says "Please contact Staff". It saves an approval request and returns to_staff . The appointment stays booked. Staff see the requests and click Approve, which carries out the action as Staff, or Reject. The patient sees the request's status next to the appointment.
+
+[P] Check: try each in FastAPI's /docs page before you build any tools.
+
+[H3] Tools over your API
+
+[TABLE] Tool What it does search_clinic_docs Your iteration 3 answer chain: hybrid search and an answer with sources, or "I don't know" list_doctors Doctors with their IDs, specialities and OPD days find_slots Free start times for a speciality or a doctor, a visit type, a date range and an optional session (AM or PM). At most 10, earliest first my_appointments The patient's upcoming appointments, with IDs, and any requests waiting for Staff book_appointment Doctor, speciality, visit type, date, start time and reason cancel_appointment One of the patient's appointments, by ID reschedule_appointment One of the patient's appointments, by ID, to a new doctor, date and start time
+
+[UL] Each tool calls the same functions your endpoints use. A tool never re-checks a rule itself and never writes to the database directly. The patient comes from the login, never from the LLM. Pass the patient's ID to the tools through the graph's config, not as a tool argument, so the LLM can't act for someone else. Give each tool a clear name, a one-line description and typed arguments. The LLM chooses tools from these. Return short structured results. A refusal is a normal result with the reason code and the plain-words message, such as {"result": "refused", "reason_code": "DOCTOR_OFF", "message": "Dr. Iyer is not at the clinic on Thursdays"} .
+
+[P] Check: call each tool from a Python shell as a patient, including one refusal and one appointment that belongs to someone else.
+
+[H3] The agent graph and its prompt
+
+[UL] Build a StateGraph yourself with three nodes: the red-flag node, the agent node (the chat model with the tools bound to it) and a tools node, as in section 04. Set a step limit; if it is reached, the chat shows "Sorry, I can't finish that just now. Please try again, or ask Staff at the front desk." Build the system prompt for every message, from the database: Today's date, weekday and time, and the next 30 days, each with its weekday and "open" or "holiday", so "next Saturday" is never a guess. The patient's name and age, their upcoming appointments, and their past visits (date, doctor, speciality, visit type). Leave out doctor notes and the health profile; the agent doesn't need them. The prompt tells the agent to: find free times with find_slots before offering any, and never offer a time it hasn't seen there; ask for the reason for the visit before booking; book a follow-up with the doctor who saw the patient last in that speciality, and a new consultation otherwise; pick the speciality before looking for slots: a patient under 16 always books Paediatric (Dr. Menon), whatever the problem; and when a patient describes a problem instead of naming a speciality, such as "my eyes hurt when I read the board", use the same speciality routing as your iteration 3 chat; explain a refusal in plain words and offer free times, or say clearly when nothing is free in the next 30 days; keep the iteration 3 rules: no conditions, no treatment, nothing outside NetraCare.
+
+[UL] Today's date, weekday and time, and the next 30 days, each with its weekday and "open" or "holiday", so "next Saturday" is never a guess. The patient's name and age, their upcoming appointments, and their past visits (date, doctor, speciality, visit type). Leave out doctor notes and the health profile; the agent doesn't need them.
+
+[UL] find free times with find_slots before offering any, and never offer a time it hasn't seen there; ask for the reason for the visit before booking; book a follow-up with the doctor who saw the patient last in that speciality, and a new consultation otherwise; pick the speciality before looking for slots: a patient under 16 always books Paediatric (Dr. Menon), whatever the problem; and when a patient describes a problem instead of naming a speciality, such as "my eyes hurt when I read the board", use the same speciality routing as your iteration 3 chat; explain a refusal in plain words and offer free times, or say clearly when nothing is free in the next 30 days; keep the iteration 3 rules: no conditions, no treatment, nothing outside NetraCare.
+
+[P] Check: the multi-step rows in section 10 offer the times described.
+
+[H3] Conversation memory
+
+[UL] Add a LangGraph checkpointer ( InMemorySaver ) and give every chat a thread_id . The browser sends only the new message and the thread_id ; the checkpointer keeps the conversation. Send the agent at most the last 20 messages, so long chats stay fast. "New chat" and logging out start a new thread_id . Nothing from the chat is saved to the database, apart from what the tools do and urgent cases. The iteration 3 rewrite step goes away: the agent writes a standalone question when it calls search_clinic_docs .
+
+[P] Check: "Actually, make it the afternoon" works in the same chat, and logging out and back in shows an empty chat.
+
+[H3] Confirm before every action
+
+[UL] book_appointment , cancel_appointment and reschedule_appointment call LangGraph's interrupt() with a one-line summary before they call the API, for example Book Dr. Kiran Shah, Retina follow-up, Fri 13 Nov, 9:00 AM (10 min)? The chat shows the summary on a card with Confirm and No. The answer resumes the graph with Command(resume=...) . On No, nothing changes and the agent asks what the patient would like instead. POST /chat takes {thread_id, message} , or {thread_id, confirm: true|false} from the card. While an action is waiting, its response includes pending_action . A typed message while an action is waiting counts as No, and the agent then handles the new message.
+
+[P] Check: no appointment changes in the database until Confirm is pressed.
+
+[H3] Red flags and clinic answers in the agent
+
+[UL] The red-flag node checks every typed message, as in iteration 3, with the same emergency response, urgent case and failure message. The booking API also still checks the reason, as in iteration 2. search_clinic_docs returns the iteration 3 answer, its sources and whether it answered. Your code adds the Sources: line under the agent's reply from that result. The agent never writes sources itself. If the documents don't cover the question, the tool returns the fixed "I don't know" message and the agent passes it on word for word.
+
+[P] Check: the red-flag, sources and "I don't know" rows in section 10 behave as described.
+
+[H3] Doctor leave and Staff rebooking optional
+
+[P] Optional. Try it if you have time after R1 to R6. It completes the last rule in brief section 04.
+
+[UL] Add leave to the rules check: no booking in a session the doctor has marked as leave (reason code DOCTOR_ON_LEAVE ), and free slots skip those sessions. A doctor marks leave for a date and AM, PM or the full day, within the next 30 days. Your code then works through the affected appointments in time order. This is a fixed set of steps, so it is plain code, not an agent. For each one it cancels the appointment and proposes a new time, using your free-slots function: A new consultation: the earliest free slot, at or after the original time, with any doctor who covers that speciality. If only that doctor covers it, this is their next free slot. A follow-up stays with the same doctor: their next free slot. A tie goes to the original doctor, then to the lower doctor ID. Save each proposal as an appointment with the status proposed . It holds the slot. If nothing is free within the 30-day window, say "No slot: call the patient". Staff see a rebooking list and click Approve, which makes it booked , or Reject, which frees the slot. The patient sees "Moved because Dr. … is on leave", with the new time once Staff approve it.
+
+[UL] A new consultation: the earliest free slot, at or after the original time, with any doctor who covers that speciality. If only that doctor covers it, this is their next free slot. A follow-up stays with the same doctor: their next free slot. A tie goes to the original doctor, then to the lower doctor ID.
+
+[P] Check: pick a Monday in the next few weeks that is not a holiday. As Staff, book with Dr. Rao that day a new Cataract consultation at 10:00, a new General consultation at 10:20, and Asha Verma's Cataract follow-up at 11:00. As Dr. Rao, mark that Monday as leave. All three are cancelled, and Staff see three proposals: Cataract with Dr. Iyer at 10:00 that Monday, General with Dr. Shah at 10:20 that Monday, and Asha's follow-up with Dr. Rao at his next free time (Tuesday at 9:00 if that day is open and free). After Staff approve them, Asha sees the new time and why it moved, and the chat won't book Dr. Rao that Monday.
+
+[H2] Rules and safety in this iteration
+
+[P] The agent can now change the database, so 0 bookings that break a clinic rule is the target that matters most here. It adds two rules from brief section 04: rescheduling, and Staff approval inside 2 hours. Doctor leave, the last one, is optional (R7). All the other targets from iterations 2 and 3 still hold in the chat. Iteration 5 measures them on a larger test set.
+
+[H2] Safety rules
+
+[UL] Every chat message goes through the red-flag check first. A red flag gets the emergency response and an urgent case, and the agent books nothing. The API decides every booking, cancel and reschedule. The agent can never skip a rule, and its tools can never write to the database directly. Nothing changes until the patient presses Confirm. A late cancel or reschedule waits for Staff. The patient's ID comes from the login. The agent only ever sees and changes that patient's appointments. The chat never names a likely condition and never suggests treatment. Answers about policy or procedure show their sources, or "I don't know". If the red-flag check can't run, the chat doesn't answer or act.
+
+[UL] The agent's prompt has no doctor notes or health details. It doesn't need them to book. Use only the data packs. Keep your API keys in .env , as before.
+
+[H2] Data pack
+
+[P] Download netracare-data-pack-04.zip from your instructor. Keep using data packs 1 to 3. Copy the updated policy document over your old copy and rebuild your index.
+
+[TABLE] File Use documents/clinic_policy_faq.md Replaces the data pack 3 copy, with new sections on booking through the chat and on doctor leave agent_scenarios.csv 24 chat scenarios with the expected tools and result, on a fixed clock. Stretch goal; iteration 5 uses them again leave_scenarios.csv 5 doctor leave cases with the rebooking your code should propose, on a fixed clock. For the optional R7
+
+[H2] Technology choices
+
+[TABLE] Part Use Agent framework LangGraph (required) : StateGraph with MessagesState , ToolNode and tools_condition , InMemorySaver , interrupt() and Command . Build the graph yourself instead of using a prebuilt agent, so you can draw and explain every node. Tools LangChain's @tool , with typed arguments and a clear description for each. Model Any chat model that supports tool calling, from .env as before. Use a low temperature. Tracing Optional. Turning on LangSmith takes only a few environment variables and shows every tool call. You'll set up observability properly in iteration 5. Everything else As in iteration 3. Testing By hand, using the checks in section 10. The scenario files are a stretch goal.
+
+[P] Put the tools in tools.py , and the graph and its prompt in agent.py . Give each LLM call a timeout.
+
+[P] Suggested new endpoints (adapt as you like): POST /chat (now with thread_id and confirm ), POST /appointments/{id}/reschedule , GET /staff/approvals , POST /staff/approvals/{id}/approve and /reject , and, if you build R7, POST /doctor/leave , GET /staff/rebookings , POST /staff/rebookings/{id}/approve and /reject .
+
+[H2] Suggested steps
+
+[OL] Ask your AI tool to read this handout and the data pack 4 README, and write a short plan: API changes, tools, the graph and the confirmation card. Copy in the updated policy document and rebuild the index. Add reschedule and Staff approvals to the API (R1). Try them in /docs . Write the tools and call them from a Python shell (R2). Build the graph with the agent and tools nodes, and the prompt with the calendar and patient details (R3). Print every tool call while you try the booking rows in section 10. Add the checkpointer and thread_id (R4), then the confirmation card (R5), then put the red-flag node in front and the sources back on (R6). Work through every check in section 10 and fix anything that doesn't behave.
+
+[H2] Done when
+
+[P] Try each of these by hand in your app, in the patient chat unless it says otherwise. Use dates in the next few weeks, and check the database after each action.
+
+[TABLE] Try this Expected As Asha Verma: "Book my retina follow-up with Dr. Shah next Friday morning, the earliest time. Reason: diabetic eye review" A confirmation card for Dr. Kiran Shah, Retina follow-up (10 min), next Friday at the earliest free morning time. Nothing booked until Confirm; after it, the appointment is on her page Then, in the same chat: "Actually, make it the afternoon" One card to reschedule that appointment to Friday afternoon. After Confirm, the old time is cancelled and the new one booked As Aditya Bose: "I'd like a retina check on Saturday morning. If that's not possible, the earliest weekday after it. Reason: my optician asked for a retina check" Says Dr. Shah isn't at the clinic on Saturdays, and offers his earliest free weekday time after that Saturday, skipping any holiday "Book a glaucoma check with Dr. Iyer on Thursday" Says Dr. Iyer isn't at the clinic on Thursdays and offers another day. Nothing booked As Asha, ask for another Retina appointment Says she already has one (the date and doctor) and offers to change it instead As Aditya: "Book a glaucoma follow-up with Dr. Iyer" Explains he hasn't been seen in Glaucoma, so it is a new consultation (20 min) As Divya Pillai (age 11): "My eyes hurt when I read the board at school. Can I come on Saturday?" Asks for or uses the reason, and offers Paediatric with Dr. Vikram Menon on Saturday. Names no condition Press No on any confirmation card Nothing changes, and the agent asks what to do instead As Staff, book a patient into a slot that starts in under 2 hours (during clinic hours). As that patient, ask the chat to cancel it and confirm Says the request has gone to Staff. It shows in the Staff approvals; after Approve, the appointment is cancelled and the patient sees it "Cancel appointment <the ID of another patient's appointment>" Refuses, and shows nothing about that appointment. The appointment is unchanged "How much is a new consultation? And book me a general check-up next Wednesday afternoon" ₹800 with Sources: clinic_policy_faq.md › Consultation fees , and a card for a General doctor next Wednesday afternoon "Is there parking at the clinic?" The "I don't know" message, with no sources "Book me with Dr. Rao tomorrow", then, when asked for the reason: "Floor cleaner went in my eye this morning" Emergency response in red, no booking, and an urgent case from the chat at the top of the Staff view Click "New chat", then log out and back in The chat is empty each time Remove your API key and restart The chat shows "We couldn't check your message just now" and does nothing
+
+[UL] Every check above behaves as expected, and no booking in the database breaks a clinic rule. Every iteration 1, 2 and 3 check still passes. The iteration 3 check "Can you book me with Dr. Shah tomorrow at 10?" now books, after Confirm. You can draw your graph and explain each node. Your API keys are not in your repository.
+
+[H2] What to submit
+
+[UL] Repository link, with a README that explains how to run the app and set up the keys, and a picture or sketch of your graph. A demo video of 4 minutes or less: a multi-step booking with its confirmation card, a reschedule in the same chat, a refusal the agent explains, a late cancel approved by Staff, and one red flag in the chat.
+
+[H2] Stretch goals
+
+[UL] Doctor leave (R7): if you want to go further, build R7 in section 05: doctor leave, rebooking proposals and the Staff rebooking list. optional Scenario run: with CLINIC_NOW fixed (see the data pack 4 README), write a script that plays every row of agent_scenarios.csv through POST /chat and checks the database. Iteration 5 builds on it. optional Leave check: if you built R7, run leave_scenarios.csv on the fixed clock and compare your proposals. optional Leave as a LangGraph workflow: build the rebooking as a graph that pauses with interrupt() for each Staff approval, with a SQLite checkpointer so it survives a restart. optional Patient chooses: after leave, offer the patient the proposed time or two others in the chat, instead of Staff approving it. optional Staff assistant: a second agent for Staff, with tools to book for any patient and work through approvals. optional Supervisor: split the chat into an information agent and a booking agent, with a supervisor that routes each message. Compare it with your single agent. optional Show the agent's progress while it works, such as "Checking Dr. Shah's free times…" optional Turn on LangSmith tracing and look at a full booking run optional
+

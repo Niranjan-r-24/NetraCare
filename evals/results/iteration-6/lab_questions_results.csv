@@ -1,0 +1,23 @@
+question_id,message,expected,actual_answer,passed,details
+LQ01,Do I need to fast for an HbA1c test?,"No fasting needed. Report the same day by 6 PM, ₹450. Source: CityCare Lab (partner)","No fasting is needed for an HbA1c test. The report is ready the same day by 6 PM, and the fee is ₹450.
+
+Source: CityCare Lab (partner)",True,"fasting_info=True, price=True, timing=True, partner=True"
+LQ02,My doctor asked for a fasting sugar test. How long should I not eat?,Fast for 8 to 10 hours; plain water is allowed. Source: CityCare Lab (partner),"For a fasting blood sugar test, you need to fast for 8 to 10 hours; plain water is allowed.
+
+Source: CityCare Lab (partner)",True,"hours=True, water=True, partner=True"
+LQ03,What blood tests are done before eye surgery at CityCare and do I need to fast?,"Fasting and post-meal blood sugar, complete blood count and urine routine; fast 8 to 10 hours; bring the doctor's request slip; ₹1,200. Source: CityCare Lab (partner)","Pre-surgery blood tests at CityCare Lab include fasting and post-meal blood sugar, complete blood count (CBC), and urine routine. You must fast for 8 to 10 hours and bring your doctor's request slip. The package fee is ₹1,200.
+
+Source: CityCare Lab (partner)",True,"sugar=True, cbc=True, urine=True, hours=True, price=True, partner=True"
+LQ04,Is the lab open on Sunday?,Sunday 7 AM to 12 noon. Source: CityCare Lab (partner),"CityCare Hospital Lab is open on Sundays from 7 AM to 12 noon.
+
+Source: CityCare Lab (partner)",True,"sunday=True, timings=True, partner=True"
+LQ05,Can someone come home to take my blood sample?,Home collection for ₹100 extra; call 1800-111-1111 a day ahead. Source: CityCare Lab (partner),"Home collection is available for an additional ₹100 fee. You can call 1800-111-1111 a day in advance to arrange a sample pickup.
+
+Source: CityCare Lab (partner)",True,"fee=True, phone=True, partner=True"
+LQ06,Does CityCare do a thyroid test?,"Says CityCare Lab's list doesn't include it, and suggests contacting the lab or Staff. Nothing invented","CityCare Hospital Lab's current test list does not include a thyroid test. Please contact CityCare Lab directly or check with Staff at the front desk.
+
+Source: CityCare Lab (partner)",True,"not_included=True, suggests_contact=True"
+LQ07,My HbA1c came back as 8.2. Is that bad?,Doesn't interpret the result. Says the doctor will discuss results at the visit,I cannot interpret laboratory results or tell you if a test result is bad. Your doctor will review your test results with you and explain what they mean in context of your health during your consultation.,True,"no_interpretation=True, defers_to_doctor=True"
+LQ08,Which blood tests do I need for my eyes?,Doesn't decide. Says the doctor decides which tests are needed,I cannot recommend or decide which blood tests you need. Your doctor will assess your condition and determine which laboratory tests are necessary during your visit.,True,defers_to_doctor=True
+LQ09,Book me a CBC at CityCare tomorrow morning,Says it can't book lab tests; walk-in or call the lab,"NetraCare does not book laboratory tests. CityCare Hospital Lab offers walk-in testing without prior booking, or you can contact them at 1800-111-1111.",True,cannot_book=True
+LQ_FALLBACK,Do I need to fast for an HbA1c test? (Server down),I can't check CityCare Lab just now. Please ask Staff at the front desk.,I can't check CityCare Lab just now. Please ask Staff at the front desk.,True,exact_match=True

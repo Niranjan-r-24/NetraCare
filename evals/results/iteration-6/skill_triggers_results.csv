@@ -1,0 +1,17 @@
+trigger_id,patient_id,message,expected_skill,also_acceptable,actual_skill,is_emergency,passed,answer_preview
+T01,P01,I'm having my cataract operation on Monday. Can I have breakfast that morning?,cataract-surgery-care,,cataract-surgery-care,False,True,"On the morning of your cataract surgery, please follow the hospital's fasting guidelines. A light meal (tea/coffee and d"
+T02,P14,It's 3 days since my cataract surgery. Can I wash my hair?,cataract-surgery-care,,cataract-surgery-care,False,True,"According to the Cataract Surgery Post-Operative Guide, you can wash your hair starting 3 days after surgery. Please was"
+T03,P18,Can I watch TV and read the paper after cataract surgery?,cataract-surgery-care,,cataract-surgery-care,False,True,You can watch TV and read the paper in moderation after cataract surgery as long as you feel comfortable and do not stra
+T04,P11,I'm tired of my glasses and want to get LASIK done,lasik-suitability-intake,,lasik-suitability-intake,False,True,"For children's eye tests, Dr. Vikram Menon is our Paediatric Ophthalmology specialist. His OPD days are Monday, Tuesday,"
+T05,P20,Am I suitable for laser eye surgery?,lasik-suitability-intake,,lasik-suitability-intake,False,True,"For children's eye tests, Dr. Vikram Menon is our Paediatric Ophthalmology specialist. His OPD days are Monday, Tuesday,"
+T06,P16,How much does LASIK cost?,none,lasik-suitability-intake,none,False,True,"Sorry, I can't answer just now. Please try again, or ask Staff at the front desk."
+T07,P01,What do I need to bring to my appointment?,prepare-for-visit,,prepare-for-visit,False,True,"For your upcoming visit, please bring: 1. Your current glasses or contact lens prescriptions 2. A complete list of all m"
+T08,P03,Is there anything I should do before my glaucoma appointment?,prepare-for-visit,,prepare-for-visit,False,True,"For your upcoming visit, please bring: 1. Your current glasses or contact lens prescriptions 2. A complete list of all m"
+T09,P07,My teacher says I can't see the board properly. Can I get my eyes checked?,children-visit,,children-visit,False,True,"For children's eye tests, Dr. Vikram Menon is our Paediatric Ophthalmology specialist. His OPD days are Monday, Tuesday,"
+T10,P12,I want to book an eye test,children-visit,,children-visit,False,True,"For children's eye tests, Dr. Vikram Menon is our Paediatric Ophthalmology specialist. His OPD days are Monday, Tuesday,"
+T11,P19,My daughter is 6 and sits very close to the TV. Which doctor should she see?,children-visit,,children-visit,False,True,"For children's eye tests, Dr. Vikram Menon is our Paediatric Ophthalmology specialist. His OPD days are Monday, Tuesday,"
+T12,P02,What time do you open on Saturday?,none,,none,False,True,"Sorry, I can't answer just now. Please try again, or ask Staff at the front desk."
+T13,P05,Book me with Dr. Khan next Tuesday for dry eyes,none,,none,False,True,How can I assist you with your appointment or eye care today?
+T14,P06,Cancel my appointment please,none,,none,False,True,"Sorry, I can't finish that just now. Please try again, or ask Staff at the front desk."
+T15,P04,Is my blurred vision a cataract?,none,,none,False,True,A specialist can assess your vision at NetraCare. Dr. Anand Rao and Dr. Meera Iyer specialize in Cataract and General Op
+T16,P09,Since this morning I can't see anything from my left eye after my cataract surgery,none,,none,True,True,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our s

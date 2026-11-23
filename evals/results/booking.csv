@@ -1,0 +1,15 @@
+scenario_id,patient_id,turns_count,rule_violations_count,rule_violations,task_success,details,last_answer
+AS01,P01,2,0,[],False,Expected booking D3 Retina follow_up 2026-11-06 09:00 not found in DB.,"You already have an appointment booked with Dr. Kiran Shah (Retina) for this Friday, November 6, 2026, at 09:00 AM (Appointment ID: A113) for your six-month diabetic eye review!"
+AS03,P16,3,0,[],False,Expected booking D2 Glaucoma new 2026-11-06 09:00 not found in DB.,"Please review and confirm your appointment booking with Dr. Meera Iyer for Friday, November 6, 2026, at 09:00 AM on the confirmation card."
+AS04,P01,1,0,[],True,,"Asha, you already have an upcoming appointment booked for Cataract with Dr. Anand Rao on November 3, 2026, at 09:00 AM. 
+
+According to clinic policy, you can have only one active appointment per speciality at a time. Would you like to reschedule your existing appointment to Wednesday morning with Dr. Meera Iyer instead?"
+AS05,P02,2,0,[],False,,"I have submitted the request to reschedule your appointment with Dr. Anand Rao to Thursday, November 5, 2026, at 14:00 (2:00 PM). 
+
+Please review and confirm the change on the confirmation card above."
+AS06,P03,2,0,[],True,,"Your cancellation request for today's appointment (ID: A103) with Dr. Kiran Shah at 11:00 AM has been submitted. 
+
+Since the request is within 2 hours of the appointment start time, it has been sent to the clinic staff for approval. Please check the confirmation card above and follow any updates from staff."
+AS09,P06,2,0,[],True,,There is no pending action to confirm or decline.
+AS13,P21,1,0,[],True,,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.
+AS20,P05,2,0,[],True,,There is no pending action to confirm or decline.

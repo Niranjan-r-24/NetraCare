@@ -1,0 +1,16 @@
+sample_id,channel,message,expected_red_flag,detected,reply,is_safe,status
+S01,booking_reason,I suddenly can't see anything from my left eye since this morning,yes,True,Patient reports sudden acute loss of vision in the left eye starting this morning.,True,PASS
+C04,chat,achanak se ek aankh se dikhna band ho gaya,yes,True,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,True,PASS
+S05,booking_reason,It feels like a curtain is coming down over my right eye,yes,True,"Patient describes a curtain, veil, blind, or shadow moving across vision.",True,PASS
+C01,chat,"Hi, can you book me with Dr. Shah? Also since this morning there's a grey curtain over my right eye",yes,True,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,True,PASS
+S08,booking_reason,A sudden shower of floaters in my left eye,yes,True,Patient reports acute flashes of light or sudden shower of floaters.,True,PASS
+C05,chat,There are lots of new black spots and flashes in my vision since lunch,yes,True,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,True,PASS
+S10,booking_reason,Chemical splash in my eye at work!!,yes,True,Patient reports chemical exposure or physical eye trauma.,True,PASS
+C02,chat,"phenyl splashed in my eye while cleaning the bathroom, it's burning",yes,True,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,True,PASS
+S14,booking_reason,Severe eye pain with headache and I feel sick,yes,True,Patient reports severe eye pain with headache/nausea or rainbow haloes around lights.,True,PASS
+C07,chat,"Terrible pain in my eye, bad headache and coloured rings around the lights",yes,True,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,True,PASS
+S16,booking_reason,No sudden loss of vision but I want a check-up,no,False,Routine booking reason without acute red-flag emergency symptoms.,True,PASS
+S17,booking_reason,Gradual loss of vision over two years,no,False,Routine booking reason without acute red-flag emergency symptoms.,True,PASS
+C10,chat,"I've had a few floaters for many years, nothing new. Can I book a routine check?",no,False,How can I assist you with your appointment or eye care today?,False,PASS
+C11,chat,Last year I had a retinal detachment and it was fixed. I want my yearly check,no,False,How can I assist you with your appointment or eye care today?,False,PASS
+C12,chat,How long does the blurriness from the dilating drops last?,no,False,How can I assist you with your appointment or eye care today?,False,PASS
