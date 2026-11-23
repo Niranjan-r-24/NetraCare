@@ -29,7 +29,12 @@ import {
   HelpCircle,
   ChevronDown,
   ThumbsUp,
-  Copy
+  Copy,
+  Droplets,
+  Zap,
+  Focus,
+  Baby,
+  EyeOff
 } from 'lucide-react';
 
 export default function PatientPortal({ user }) {
@@ -137,7 +142,25 @@ export default function PatientPortal({ user }) {
     'Glaucoma': 'Comprehensive intraocular pressure monitoring, visual field assessments, and optic nerve preservation.',
     'Retina': 'Advanced diagnostic and therapeutic care for diabetic retinopathy, retinal tears, and macular health.',
     'Pediatric': 'Gentle, child-friendly eye examinations, amblyopia management, and pediatric strabismus review.',
-    'Refractive': 'High-precision LASIK pre-assessment scans, corneal topography, and laser vision correction screening.'
+    'Paediatric': 'Gentle, child-friendly eye examinations, amblyopia management, and pediatric strabismus review.',
+    'Refractive': 'High-precision LASIK pre-assessment scans, corneal topography, and laser vision correction screening.',
+    'General': 'Comprehensive routine eye wellness examinations, refractive vision testing, and anterior segment health checks.',
+    'Dry eye': 'Advanced ocular surface diagnostics, tear film break-up analysis, and personalized lubrication therapies.',
+    'Squint': 'Clinical strabismus evaluation, binocular alignment diagnostics, and surgical motor re-alignment.'
+  };
+
+  const getServiceIcon = (spec) => {
+    const s = (spec || '').toLowerCase();
+    if (s.includes('cataract')) return <Eye size={22} strokeWidth={2} />;
+    if (s.includes('cornea')) return <Sparkles size={22} strokeWidth={2} />;
+    if (s.includes('glaucoma')) return <Activity size={22} strokeWidth={2} />;
+    if (s.includes('retina')) return <Focus size={22} strokeWidth={2} />;
+    if (s.includes('paediatric') || s.includes('pediatric')) return <Baby size={22} strokeWidth={2} />;
+    if (s.includes('refractive') || s.includes('lasik')) return <Zap size={22} strokeWidth={2} />;
+    if (s.includes('dry')) return <Droplets size={22} strokeWidth={2} />;
+    if (s.includes('squint') || s.includes('strabismus')) return <EyeOff size={22} strokeWidth={2} />;
+    if (s.includes('general')) return <Stethoscope size={22} strokeWidth={2} />;
+    return <Eye size={22} strokeWidth={2} />;
   };
 
   const getDoctorMeta = (name) => {
@@ -320,59 +343,51 @@ export default function PatientPortal({ user }) {
   return (
     <div style={{ display: 'grid', gap: '2.5rem' }}>
       
-      {/* 1. Ophthalmology Hero Section */}
+      {/* 1. Ophthalmology Hero Section - Editorial & Premium */}
       <div id="section-hero" className="ref-hero-banner" style={{
         display: 'grid',
         gridTemplateColumns: '1.2fr 0.8fr',
-        gap: '2rem',
+        gap: '2.5rem',
         alignItems: 'center'
       }}>
-        <div style={{ display: 'grid', gap: '1.15rem' }}>
+        <div style={{ display: 'grid', gap: '1.25rem' }}>
           <div className="ref-eyebrow" style={{ color: '#D4C5B0' }}>
-            <Activity size={14} color="#D4C5B0" /> Specialized Eye Care & Surgical Center
+            <Activity size={15} color="#D4C5B0" /> Specialized Eye Care & Surgical Center
           </div>
-          <h1 style={{
-            fontSize: '2.25rem',
-            fontWeight: 700,
-            color: 'var(--cream-text)',
-            lineHeight: 1.2,
-            letterSpacing: '-0.025em',
-            margin: 0
-          }}>
+          <h1 className="hero-serif-title">
             Advanced Ophthalmology & Precision Clinical Care
           </h1>
           <p style={{
-            fontSize: '1rem',
+            fontFamily: 'var(--font-body)',
+            fontSize: '1.05rem',
             color: 'var(--cream-text)',
-            opacity: 0.9,
-            lineHeight: 1.6,
-            maxWidth: '540px',
+            opacity: 0.92,
+            lineHeight: 1.65,
+            maxWidth: '560px',
             margin: 0,
             fontWeight: 400
           }}>
             NetraCare is a safety-governed ophthalmology clinical center connecting patients with board-certified eye specialists, real-time OPD slot discovery, and 24/7 AI-guided clinical assistance for cornea, cataract, LASIK, and retina care.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginTop: '0.45rem' }}>
             <button
               type="button"
               onClick={() => scrollToBooking()}
-              className="btn btn-primary"
-              style={{ padding: '0.75rem 1.5rem', fontSize: '0.92rem', fontWeight: 600, background: '#FFFFFF', color: 'var(--navy)', border: '1px solid #FFFFFF' }}
+              className="hero-btn-primary"
             >
-              <Calendar size={16} /> Schedule Consultation
+              <Calendar size={17} /> Schedule Consultation
             </button>
             <button
               type="button"
               onClick={() => setIsChatOpen(true)}
-              className="btn btn-ghost-light"
-              style={{ padding: '0.75rem 1.45rem', fontSize: '0.92rem', fontWeight: 500 }}
+              className="hero-btn-secondary"
             >
-              <Bot size={17} /> Ask AI Assistant 24/7
+              <Bot size={18} /> Ask AI Assistant 24/7
             </button>
           </div>
         </div>
 
-        {/* Right Column: Hero Eye Image */}
+        {/* Right Column: Hero Eye Image with Clinical Framing */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
@@ -463,49 +478,61 @@ export default function PatientPortal({ user }) {
         </div>
 
         <div className="ref-services-grid">
-          {specialities.map((spec) => (
-            <div
-              key={spec}
-              className="ref-service-card"
-              onClick={() => scrollToBooking(null, spec)}
-              title={`Click to book consultation for ${spec}`}
-            >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div className="ref-icon-badge">
-                    {spec === 'Cataract' && <Eye size={20} />}
-                    {spec === 'Cornea' && <Sparkles size={20} />}
-                    {spec === 'Glaucoma' && <Activity size={20} />}
-                    {spec === 'Retina' && <Stethoscope size={20} />}
-                    {spec === 'Pediatric' && <User size={20} />}
-                    {spec === 'Refractive' && <CheckCircle2 size={20} />}
+          {specialities.map((spec, idx) => {
+            const isWarm = idx % 2 === 1; // Subtle navy/cream visual variation
+            const isNavyIcon = idx % 3 === 0; // Balanced icon background variation
+            return (
+              <div
+                key={spec}
+                className={`service-card-interactive service-card-reveal ${isWarm ? 'variant-warm' : 'variant-clean'}`}
+                style={{ animationDelay: `${Math.min(idx * 75, 450)}ms` }}
+                onClick={() => scrollToBooking(null, spec)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    scrollToBooking(null, spec);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                title={`Click to book consultation for ${spec}`}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.15rem' }}>
+                    <div className={`service-icon-box ${isNavyIcon ? 'icon-navy' : 'icon-cream'}`}>
+                      {getServiceIcon(spec)}
+                    </div>
+                    <span className="badge badge-primary" style={{ fontSize: '12px' }}>
+                      Active Clinic
+                    </span>
                   </div>
-                  <span className="badge badge-primary">Active Clinic</span>
+
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--navy)', margin: '0 0 0.45rem 0' }}>
+                    {spec} {spec !== 'Cataract' && spec !== 'Glaucoma' && spec !== 'Retina' && !spec.toLowerCase().includes('paediatric') && !spec.toLowerCase().includes('pediatric') ? 'Care' : 'Clinic'}
+                  </h3>
+                  <p style={{ fontSize: '14.5px', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0 }}>
+                    {specialityDescriptions[spec] || 'Specialized diagnostic consultations, imaging, and personalized clinical treatment plans.'}
+                  </p>
                 </div>
 
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--navy)', margin: '0 0 0.45rem 0' }}>
-                  {spec} {spec !== 'Cataract' && spec !== 'Glaucoma' && spec !== 'Retina' && spec !== 'Pediatric' ? 'Care' : 'Clinic'}
-                </h3>
-                <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0 }}>
-                  {specialityDescriptions[spec] || 'Specialized diagnostic consultations, imaging, and personalized clinical treatment plans.'}
-                </p>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderTop: '1px solid var(--border-light)',
+                  paddingTop: '0.95rem',
+                  marginTop: '0.85rem'
+                }}>
+                  <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--navy)' }}>
+                    Schedule for {spec}
+                  </span>
+                  <span className="service-card-arrow">
+                    <ChevronRight size={17} />
+                  </span>
+                </div>
               </div>
-
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                borderTop: '1px solid var(--border-light)',
-                paddingTop: '0.85rem',
-                marginTop: '0.75rem'
-              }}>
-                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--navy)' }}>
-                  Schedule for {spec}
-                </span>
-                <ChevronRight size={16} color="var(--navy)" />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

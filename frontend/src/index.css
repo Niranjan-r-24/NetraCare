@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 
 :root {
   /* Typography Variables */
+  --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
   --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
@@ -405,14 +406,26 @@ input:focus, select:focus, textarea:focus {
 
 /* Reference Aesthetic Section & Component Styles */
 .ref-hero-banner {
-  background: var(--navy);
+  background: linear-gradient(135deg, #182848 0%, #14213D 65%, #0F1A30 100%);
   border-radius: var(--radius-lg);
-  padding: 3rem 3rem;
+  padding: 3.5rem 3.25rem;
   color: var(--cream-text);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(244, 237, 224, 0.15);
+  box-shadow: 0 8px 30px -4px rgba(20, 33, 61, 0.25);
+  border: 1px solid rgba(244, 237, 224, 0.16);
+}
+
+.ref-hero-banner::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(29, 46, 84, 0.45) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .ref-eyebrow {
@@ -421,10 +434,68 @@ input:focus, select:focus, textarea:focus {
   gap: 0.5rem;
   font-size: 13px; /* 13-14px hierarchy */
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--coral);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.hero-serif-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.35rem, 3.8vw, 3.25rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn-primary {
+  background: #FFFFFF;
+  color: var(--navy);
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0.8rem 1.65rem;
+  border-radius: 6px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+.hero-btn-primary:hover {
+  background: var(--cream-surface);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+  color: var(--navy);
+}
+
+.hero-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--cream-text);
+  border: 1px solid rgba(244, 237, 224, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+.hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(244, 237, 224, 0.45);
+  transform: translateY(-2px);
+  color: #FFFFFF;
 }
 
 .ref-section-title {
@@ -451,7 +522,7 @@ input:focus, select:focus, textarea:focus {
   aspect-ratio: 14/10;
   object-fit: cover;
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(20, 33, 61, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(244, 237, 224, 0.2);
   border: 1px solid rgba(244, 237, 224, 0.25);
   display: block;
 }
@@ -532,25 +603,146 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
-.ref-service-card {
+/* Interactive Service Card */
+.service-card-interactive {
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.75rem 1.6rem;
+  padding: 1.85rem 1.65rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.15rem;
   box-shadow: var(--shadow-xs);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease,
+              background-color 0.28s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   text-align: left;
+  outline: none;
 }
-.ref-service-card:hover {
-  border-color: var(--navy-light);
-  box-shadow: var(--shadow-sm);
+
+/* Subtle navy/cream visual variations across service cards */
+.service-card-interactive.variant-warm {
+  background: #FCF9F3;
+}
+.service-card-interactive.variant-clean {
+  background: #FFFFFF;
+}
+
+/* Hover, Focus & Active States */
+.service-card-interactive:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px -6px rgba(20, 33, 61, 0.12), 0 3px 8px -2px rgba(20, 33, 61, 0.04);
+  border-color: var(--navy);
+}
+
+.service-card-interactive:focus-visible {
+  box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.22);
+  border-color: var(--navy);
+}
+
+.service-card-interactive:active {
+  transform: translateY(-2px);
+}
+
+/* Tiny coral interactive accent highlight at top edge on hover */
+.service-card-interactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--coral);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.service-card-interactive:hover::before {
+  opacity: 1;
+}
+
+/* Icon box inside service cards */
+.service-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.28s ease,
+              color 0.28s ease,
+              border-color 0.28s ease;
+}
+
+.service-icon-box.icon-navy {
+  background: var(--navy);
+  color: var(--cream-text);
+  border: 1px solid var(--navy);
+}
+
+.service-icon-box.icon-cream {
+  background: var(--cream-surface);
+  color: var(--navy);
+  border: 1px solid var(--cream-border);
+}
+
+.service-card-interactive:hover .service-icon-box {
+  transform: scale(1.08) translateY(-2px);
+}
+
+.service-card-interactive:hover .service-icon-box.icon-cream {
+  background: var(--navy);
+  color: var(--cream-text);
+  border-color: var(--navy);
+}
+
+/* Animated interactive arrow */
+.service-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), color 0.28s ease;
+  color: var(--navy);
+}
+
+.service-card-interactive:hover .service-card-arrow {
+  transform: translateX(5px);
+  color: var(--coral);
+}
+
+/* Tasteful scroll-reveal animation */
+@keyframes serviceCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card-reveal {
+  animation: serviceCardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .service-card-interactive,
+  .service-icon-box,
+  .service-card-arrow,
+  .service-card-reveal,
+  .hero-btn-primary,
+  .hero-btn-secondary {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 /* Doctor Cards Grid: Genuinely grouped cards */
